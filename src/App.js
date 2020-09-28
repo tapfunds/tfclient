@@ -1,8 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  async function getUser() {
+    try {
+      const response = await axios.get('http://localhost:8000/api/auth');
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  getUser()
+
   return (
     <div className="App">
       <header className="App-header">
