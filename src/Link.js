@@ -17,8 +17,6 @@ function Link() {
         }
     )
     
-
-
     async function getUser() {
       try {
         const response = axios.post("http://localhost:8000/api/set_access_token", {
