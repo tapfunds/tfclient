@@ -17,32 +17,28 @@ function Link() {
         }
     )
     
-    const onSuccess = (public_token, metadata) => {
-      // send token to server
-      axios.post("/api/set_access_token", {
-        public_token: public_token
-      });
-    };
 
-    
+
+    async function getUser() {
+      try {
+        const response = axios.post("http://localhost:8000/api/set_access_token", {
+          public_token: data.link_token
+        });
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   
     if (loading) return <p>Loading...</p>
     if (error) return <p>Error!</p>
   
-    console.log(data.link_token)
-  
+    getUser()
+    console.log(data.link_token) 
   
     return (
       <div>
-        
-          <PlaidLink
-          token={data.link_token}
-          onSuccess={onSuccess}
-        >
-          Connect a bank account
-        </PlaidLink>
-          
-  
+        <button>Issa button</button>
       </div>
     );
 };
