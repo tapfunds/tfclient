@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {PlaidLink} from "react-plaid-link";
+import React from 'react';
+// import {PlaidLink} from "react-plaid-link";
 import axios from "axios";
 import useAxios from 'axios-hooks';
 
 
 function Link() {
-    const [transactions, setTransactions] = useState([]);
+    // const [transactions, setTransactions] = useState([]);
     const [
       
       { data, loading, error }
