@@ -32,7 +32,7 @@ function Link() {
     onSuccess,
   };
 
-  const { open, ready, err } = usePlaidLink(config);
+  const { open, ready } = usePlaidLink(config);
 
   console.log(data);
 
