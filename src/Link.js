@@ -4,8 +4,8 @@ import axios from "axios";
 
 function Link() {
   const [data, setData] = useState("");
-  const tokenURL = "http://localhost:8000/api/create_link_token";
-
+  const tokenURL = "https://tfapi-dybqyjeieq-ue.a.run.app/api/create_link_token";
+  
   useEffect(() => {
     // POST request using axios inside useEffect React hook
     axios
