@@ -32,8 +32,9 @@ function Link() {
     onSuccess,
   };
 
-  const { open, ready } = usePlaidLink(config);
-
+  const { open, ready, err } = usePlaidLink(config);
+  // make this link to error page 
+  if (err) return <p>Error!</p>
   console.log(data);
 
   return (
