@@ -1,45 +1,74 @@
-import React from 'react';
-// import {PlaidLink} from "react-plaid-link";
+import React, { useState, useCallback, useEffect } from "react";
+import { usePlaidLink } from "react-plaid-link";
 import axios from "axios";
-import useAxios from 'axios-hooks';
-
+import useAxios from "axios-hooks";
 
 function Link() {
-    // const [transactions, setTransactions] = useState([]);
-    const [
-      
-      { data, loading, error }
-    
-      ] = useAxios(
-        {
-          url : 'http://localhost:8000/api/create_link_token',
-          method: "POST"
-        }
-    )
-    
-    async function getUser() {
-      try {
-        const response = axios.post("http://localhost:8000/api/set_access_token", {
-          public_token: data.link_token
-        });
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>Error!</p>
-  
-    getUser()
-    console.log(data.link_token) 
-  
-    return (
-      <div>
-        <button>Issa button</button>
-      </div>
-    );
-};
+  const [data, setData] = useState("");
+  const tokenURL = "http://localhost:8000/api/create_link_token";
+  // const [
 
+  //   { data, loading, error }
+
+  //   ] = useAxios(
+  //     {
+  //       url : 'http://localhost:8000/api/create_link_token',
+  //       method: "POST"
+  //     }
+  // )
+
+  // const onSuccess = useCallback((data, metadata) => {
+  //   // send token to server
+  //   try {
+  //     const response = axios.post("http://localhost:8000/api/set_access_token");
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }, []);
+
+  // const getToken = () => {
+  //   try {
+  //     const response = axios
+  //       .post("http://localhost:8000/api/create_link_token")
+  //       .then((response) => {
+  //         const link = response.data.link_token;
+  //         // setData(link)
+  //       });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  useEffect(() => {
+    // POST request using axios inside useEffect React hook
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+    };
+    axios
+      .post(tokenURL)
+      .then((response) =>
+        setData(response.data.link_token, "", headers )
+      ).catch = (error) => {
+      console.log(error);
+    };
+  }, []);
+
+  // const config = {
+  //   token: data.link_token,
+  //   onSuccess,
+  //   // ...
+  // };
+
+  // const { open, ready, err } = usePlaidLink(config);
+
+  console.log(data);
+
+  return (
+    <div>
+      <button>Issa button</button>
+    </div>
+  );
+}
 
 export default Link;
