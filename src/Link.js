@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Link() {
   const [data, setData] = useState("");
-  const tokenURL = "http://localhost:8000/api/create_link_token";
+  const tokenURL = "http://35.224.70.214/create_link_token";
 
   useEffect(() => {
     // POST request using axios inside useEffect React hook
@@ -20,7 +20,7 @@ function Link() {
   const onSuccess = useCallback((data, metadata) => {
     // send token to server
     try {
-      const response = axios.post("http://localhost:8000/api/set_access_token");
+      const response = axios.post("http://35.224.70.214/api/set_access_token");
       console.log(response);
     } catch (error) {
       console.error(error);

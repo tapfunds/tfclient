@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Link from './Link';
 
-// get the link token
+// get tgcloud inite link token
 // use link token to open link 
 // get that pub access token from Link auth
 // on success send that pub access token on server
