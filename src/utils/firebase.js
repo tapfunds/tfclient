@@ -1,3 +1,5 @@
+// https://blog.logrocket.com/user-authentication-firebase-react-apps/
+
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
@@ -11,9 +13,18 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_storageBucket,
   messagingSenderId: process.env.REACT_APP_messagingSenderId,
   appId: process.env.REACT_APP_appId,
-  measurementId: process.env.REACT_APP_measurementId
+  measurementId: process.env.REACT_APP_measurementId,
 };
 
 firebase.initializeApp(firebaseConfig);
+
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+  auth.signInWithPopup(provider);
+};
+
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
