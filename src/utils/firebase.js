@@ -1,8 +1,8 @@
 // https://blog.logrocket.com/user-authentication-firebase-react-apps/
-
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -16,6 +16,7 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_measurementId,
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
@@ -26,11 +27,12 @@ export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
 };
 
-
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;
+
   const userRef = firestore.doc(`users/${user.uid}`);
   const snapshot = await userRef.get();
+
   if (!snapshot.exists) {
     const { email, displayName, photoURL } = user;
     try {
@@ -46,10 +48,12 @@ export const generateUserDocument = async (user, additionalData) => {
   }
   return getUserDocument(user.uid);
 };
+
 const getUserDocument = async uid => {
   if (!uid) return null;
   try {
     const userDocument = await firestore.doc(`users/${uid}`).get();
+
     return {
       uid,
       ...userDocument.data()
@@ -58,5 +62,3 @@ const getUserDocument = async uid => {
     console.error("Error fetching user", error);
   }
 };
-
-
