@@ -17,6 +17,8 @@ function Link() {
     };
   }, []);
 
+  
+
   const onSuccess = useCallback((data, metadata) => {
     // send token to server
     try {
