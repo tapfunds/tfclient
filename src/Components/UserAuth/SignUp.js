@@ -5,8 +5,16 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
-  const createUserWithEmailAndPasswordHandler = (event, email, password) => {
+  const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
     event.preventDefault();
+    try{
+      const {user} = await auth.createUserWithEmailAndPassword(email, password);
+      generateUserDocument(user, {displayName});
+    }
+    catch(error){
+      setError('Error Signing up with email and password');
+    }
+
     setEmail("");
     setPassword("");
     setDisplayName("");

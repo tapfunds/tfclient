@@ -4,9 +4,11 @@ import Landing from "./Pages/ProfilePage/Landing";
 import UserProvider from "./utils/UserProvider";
 
 function App() {
-  <UserProvider>
-    <Application />
-  </UserProvider>;
+  return (
+    <UserProvider>
+      <Landing />
+    </UserProvider>
+  );
 }
 
 export default App;
