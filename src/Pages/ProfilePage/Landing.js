@@ -4,11 +4,12 @@ import ProfilePage from "./Profile";
 import SignIn from "../../Components/UserAuth/SignIn";
 import SignUp from "../../Components/UserAuth/SignUp";
 import PasswordReset from "../../Components/UserAuth/PasswordReset";
+import Link from "../../Components/Plaid/Link";
 
 function Landing() {
   const user = null;
   return user ? (
-    <ProfilePage />
+    <Link />
   ) : (
     <Router>
       <SignUp path="signUp" />
@@ -18,3 +19,12 @@ function Landing() {
   );
 }
 export default Landing;
+
+// import Link from "../../Components/Plaid/Link";
+// function Landing() {
+//   const user = null;
+//   return  (
+//     <Link />
+//   ) ;
+// };
+// export default Landing;
