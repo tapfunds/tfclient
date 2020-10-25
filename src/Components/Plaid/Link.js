@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Link() {
   const [data, setData] = useState("");
-  const tokenURL = "https://tfapi-dybqyjeieq-ue.a.run.app/api/create_link_token";
+  const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/create_link_token`;
 
   useEffect(() => {
     // POST request using axios inside useEffect React hook
@@ -21,7 +21,7 @@ function Link() {
   const onSuccess = useCallback((data, metadata) => {
     // send token to server
     try {
-      const response = axios.post("https://tfapi-dybqyjeieq-ue.a.run.app/api/set_access_token");
+      const response = axios.post(`${process.env.REACT_APP_DEV_API_URL}/api/set_access_token`);
       console.log(response);
     } catch (error) {
       console.error(error);
