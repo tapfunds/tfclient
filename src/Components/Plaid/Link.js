@@ -2,9 +2,12 @@ import React, { useState, useCallback, useEffect } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import axios from "axios";
 
+const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/create_link_token`;
+const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/set_access_token`;
+
+
 function Link() {
   const [data, setData] = useState("");
-  const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/create_link_token`;
 
   useEffect(() => {
     // POST request using axios inside useEffect React hook
@@ -18,10 +21,38 @@ function Link() {
   }, []);
 
 
-  const onSuccess = useCallback((data, metadata) => {
+  useEffect(() => {
+    // POST request using axios inside useEffect React hook
+    axios
+      .post(`${process.env.REACT_APP_DEV_API_URL}/api/somepost`, {
+        FirstName: 'Greatest',
+        LastName: 'Ever'
+      }, {
+        headers: {
+          // 'application/json' is the modern content-type for JSON, but some
+          // older servers may use 'text/json'.
+          // See: http://bit.ly/text-json
+          'content-type': 'application/json;charset=utf-8'
+        }
+      })
+      .then((response) =>
+        console.log(response)
+      ).catch = (error) => {
+      console.log(error);
+    };
+  }, []);
+
+  console.log(data);
+
+  const onSuccess = useCallback((token, metadata) => {
     // send token to server
+  // console.log(token);
+
     try {
-      const response = axios.post(`${process.env.REACT_APP_DEV_API_URL}/api/set_access_token`);
+      const response = axios
+      .post(sendTokenURL, {
+        public_token: token,
+      });
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -36,7 +67,6 @@ function Link() {
   const { open, ready, err } = usePlaidLink(config);
   // make an 
   if (err) return <p>Error!</p>
-  console.log(data);
 
   return (
     <div>
