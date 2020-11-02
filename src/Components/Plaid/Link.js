@@ -8,35 +8,13 @@ const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/set_access_token`
 
 function Link() {
   const [data, setData] = useState("");
-
+  
   useEffect(() => {
     // POST request using axios inside useEffect React hook
     axios
       .post(tokenURL)
       .then((response) =>
         setData(response.data.link_token )
-      ).catch = (error) => {
-      console.log(error);
-    };
-  }, []);
-
-
-  useEffect(() => {
-    // POST request using axios inside useEffect React hook
-    axios
-      .post(`${process.env.REACT_APP_DEV_API_URL}/api/somepost`, {
-        FirstName: 'Greatest',
-        LastName: 'Ever'
-      }, {
-        headers: {
-          // 'application/json' is the modern content-type for JSON, but some
-          // older servers may use 'text/json'.
-          // See: http://bit.ly/text-json
-          'content-type': 'application/json;charset=utf-8'
-        }
-      })
-      .then((response) =>
-        console.log(response)
       ).catch = (error) => {
       console.log(error);
     };
