@@ -2,8 +2,8 @@ import React, { useState, useCallback, useEffect } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import axios from "axios";
 
-const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/create_link_token`;
-const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/set_access_token`;
+const tokenURL = `http://localhost:55375/api/create_link_token`;
+const sendTokenURL = `http://localhost:55375/api/set_access_token`;
 
 
 function Link() {
@@ -24,12 +24,17 @@ function Link() {
 
   const onSuccess = useCallback((token, metadata) => {
     // send token to server
-  // console.log(token);
+   // console.log(token);
 
     try {
       const response = axios
       .post(sendTokenURL, {
         public_token: token,
+      },{
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'accept' : '*/*'
+        }
       });
       console.log(response);
     } catch (error) {
