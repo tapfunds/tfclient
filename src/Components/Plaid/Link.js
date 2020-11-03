@@ -6,7 +6,6 @@ import qs from 'qs';
 const tokenURL = `http://localhost:55375/api/create_link_token`;
 const sendTokenURL = `http://localhost:55375/api/set_access_token`;
 
-
 function Link() {
   const [data, setData] = useState("");
   
