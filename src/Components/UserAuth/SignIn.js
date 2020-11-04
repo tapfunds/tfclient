@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import {auth, signInWithGoogle } from "../../utils/firebase";
 
 const SignIn = () => {
@@ -73,11 +73,11 @@ return (
       </button>
       <p className="text-center my-3">
         Don't have an account?{" "}
-        <Link to="signUp" className="text-blue-500 hover:text-blue-600">
+        <Link to="/signup" className="text-blue-500 hover:text-blue-600">
           Sign up here
         </Link>{" "}
         <br />{" "}
-        <Link to="passwordReset" className="text-blue-500 hover:text-blue-600">
+        <Link to="/reset" className="text-blue-500 hover:text-blue-600">
           Forgot Password?
         </Link>
       </p>

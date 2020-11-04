@@ -1,5 +1,8 @@
+@import url(//fonts.googleapis.com/earlyaccess/karlatamilinclined.css);
+
 .App {
   text-align: center;
+  font-family: 'Karla Tamil Inclined', sans-serif;
 }
 
 .App-logo {
@@ -25,7 +28,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -36,3 +39,4 @@
     transform: rotate(360deg);
   }
 }
+
