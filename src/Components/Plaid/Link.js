@@ -3,6 +3,7 @@ import { usePlaidLink } from "react-plaid-link";
 import {UserContext} from "../../utils/UserProvider";
 import axios from "axios";
 import qs from "qs";
+import { useHistory } from "react-router-dom";
 
 const tokenURL = `http://localhost:55375/api/create_link_token`;
 const sendTokenURL = `http://localhost:55375/api/set_access_token`;
@@ -25,6 +26,13 @@ function Link() {
   useEffect(() => {
     fetchToken();
   }, [fetchToken]);
+
+  const history = useHistory();
+
+  const routeChange = useCallback( () => { 
+    let path = `/`; 
+    history.push(path);
+  }, [history]);
 
   const onSuccess = useCallback(async (token, metadata) => {
     // send token to server
@@ -53,8 +61,10 @@ function Link() {
     } catch (error) {
       console.error(error);
     }
-    
-  }, [id]);
+
+
+    routeChange()
+  }, [id, routeChange]);
 
   const config = {
     token: data,
