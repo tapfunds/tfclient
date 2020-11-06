@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import {UserContext} from "../../utils/UserProvider";
 import {auth} from '../../utils/firebase';
-import Link from "../../Components/Plaid/Link";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const user = useContext(UserContext);
@@ -25,7 +25,7 @@ const ProfilePage = () => {
         <h2 className = "text-2xl font-semibold">{displayName}</h2>
         <h3 className = "italic">{email}</h3>
         </div>
-        <Link/> 
+        <Link to="/auth"><button>Connect Accounts</button></Link>
       </div>
       <button className = "w-full py-3 bg-red-600 mt-4 text-white" onClick = {() => {auth.signOut()}}>Sign out</button>
     </div>
