@@ -9,11 +9,10 @@ function UserProvider({children}){
   useEffect(() => {
     auth.onAuthStateChanged(async (userAuth) => {
       const creds = await generateUserDocument(userAuth);
-      setUser({ creds });
+      setUser( creds );
     });
   }, []);
 
-  
     return (
       <UserContext.Provider value={user}>
         {children}
