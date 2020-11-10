@@ -56,8 +56,7 @@ function Link() {
         ),
         headers: { "content-type": "application/x-www-form-urlencoded" },
       };
-      const res = await axios(saveConfig);
-      console.log(res);
+      await axios(saveConfig);
     } catch (error) {
       console.error(error);
     }

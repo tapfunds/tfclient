@@ -2,7 +2,7 @@ import React, { useEffect, createContext, useState, useCallback, useContext} fro
 import {UserContext} from "./UserProvider";
 import axios from "axios";
 
-export const TokenContext = createContext({ tokens: null });
+export const TokenContext = createContext([{ tokens: null }]);
 
 
 
@@ -19,7 +19,6 @@ function TokenProvider({children}){
     };
     const res = await axios(config);
     setTokens(res.data.data);
-    console.log(res.data.data)
   }, [tokenConfigUrl]);
 
   useEffect(() => {
