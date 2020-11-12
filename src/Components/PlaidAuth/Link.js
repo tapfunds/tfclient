@@ -5,9 +5,9 @@ import axios from "axios";
 import qs from "qs";
 import { useHistory } from "react-router-dom";
 
-const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/create_link_token`;
-const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/set_access_token`;
-const saveTokenURL = `${process.env.REACT_APP_DEV_DB_URL}/tokens`;
+const tokenURL = `http://localhost:55375/api/create_link_token`;
+const sendTokenURL = `http://localhost:55375/api/set_access_token`;
+const saveTokenURL = `http://localhost:8080/tokens`;
 
 function Link() {
   const [data, setData] = useState("");
