@@ -3,7 +3,7 @@ import { TokenContext } from "../../utils/TokenProvider";
 import axios from "axios";
 import qs from "qs";
 
-const balenceURL = `http://localhost:55375/api/balance`;
+const balenceURL = `http://localhost:8000/api/balance`;
 function Balance({ props }) {
   const tokes = useContext(TokenContext);
   const [balances, setBalences] = useState([]);
