@@ -10,7 +10,7 @@ function TokenProvider({children}){
   const [tokens, setTokens] = useState()
   const user = useContext(UserContext);
   const id = user;
-  const tokenConfigUrl = `http://localhost:8080/tokens/${id}`
+  const tokenConfigUrl = `${process.env.REACT_APP_DB_API_URL}/tokens/${id}`
 
   const fetchTokens = useCallback(async () => {
     const config = {
