@@ -8,8 +8,8 @@ export const TokenContext = createContext([{ tokens: null }]);
 
 function TokenProvider({children}){
   const [tokens, setTokens] = useState()
-  const user = useContext(UserContext);
-  const id = user;
+  const user_c = useContext(UserContext);
+  const id = user_c;
   const tokenConfigUrl = `${process.env.REACT_APP_DB_API_URL}/token`
 
   const fetchTokens = useCallback(async () => {
