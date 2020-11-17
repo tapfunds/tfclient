@@ -10,12 +10,14 @@ function TokenProvider({children}){
   const [tokens, setTokens] = useState()
   const user = useContext(UserContext);
   const id = user;
-  const tokenConfigUrl = `${process.env.REACT_APP_DB_API_URL}/tokens/${id}`
+  const tokenConfigUrl = `${process.env.REACT_APP_DB_API_URL}/token`
 
   const fetchTokens = useCallback(async () => {
     const config = {
-      method: "get",
+      method: "post",
       url: tokenConfigUrl,
+      data: qs.stringify({ user: id }),
+      headers: { "content-type": "application/x-www-form-urlencoded" },
     };
     const res = await axios(config);
     setTokens(res.data.data);

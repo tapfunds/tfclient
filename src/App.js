@@ -8,8 +8,8 @@ import { StyleSheet, css } from "aphrodite";
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: "100vh",
-    minHeight: "100vh",
+    height: "200vh",
+    minHeight: "200vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
