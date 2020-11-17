@@ -28,8 +28,6 @@ function Balance({ props }) {
     Promise.all(promises).then(() => setBalences(users));
   }, [tokes]);
 
-
-  
   useEffect(() => {
     fetchBalance();
   }, [fetchBalance]);
