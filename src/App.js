@@ -5,7 +5,6 @@ import UserProvider from "./utils/UserProvider";
 import TokenProvider from "./utils/TokenProvider";
 import { NavLink } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
-import { HashRouter } from 'react-router-dom'
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -49,7 +48,6 @@ function App() {
   return (
     <UserProvider>
       <TokenProvider>
-        <HashRouter>
         <div className={css(styles.wrapper)}>
           <nav className={css(styles.title)}>
             <ul>
@@ -76,7 +74,6 @@ function App() {
           </nav>
           <Landing />
         </div>
-        </HashRouter>
       </TokenProvider>
     </UserProvider>
   );
