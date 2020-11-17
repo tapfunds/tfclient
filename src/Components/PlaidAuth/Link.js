@@ -49,9 +49,10 @@ function Link() {
         url: saveTokenURL,
         data: qs.stringify(
           { 
-            access_token: response.data.access_token,
+            user_id: id,
             item_id: response.data.item_id,
-            user: id,
+            access_token: response.data.access_token,
+            
           }
         ),
         headers: { "content-type": "application/x-www-form-urlencoded" },
