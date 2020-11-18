@@ -1,69 +1,38 @@
-import React, { useContext, useCallback, useEffect, useState } from "react";
-import { TokenContext } from "../../utils/TokenProvider";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import {UserContext} from "../../utils/UserProvider";
+import GetBalance from "./GetBalance";
 import qs from "qs";
 
-const balenceURL = `${process.env.REACT_APP_PROD_API_URL}/api/balance`;
-function Balance({ props }) {
-  const tokes = useContext(TokenContext);
-  const [balances, setBalences] = useState([]);
+const tokenConfigUrl = `${process.env.REACT_APP_DB_API_URL}/token`
 
-  const fetchBalance = useCallback(() => {
-    const config = {
-      method: "post",
-      url: balenceURL,
-      data: qs.stringify({ access_token: "token" }),
-    };
-
-    let users = [];
-    let promises = [];
-    for (let i = 0; i < tokes.length; i++) {
-      config.data = qs.stringify({ access_token: tokes[i].accesstoken });
-      promises.push(
-        axios(config).then((response) => {
-          users.push(response.data.accounts);
-        })
-      );
-    }
-    Promise.all(promises).then(() => setBalences(users));
-  }, [tokes]);
+function Balance() {
+  const user = useContext(UserContext);
+  const userID = user.uid
+  const [ data, setData ] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    fetchBalance();
-  }, [fetchBalance]);
+    const config = {
+      method: "POST",
+      body: qs.stringify({ user_id: userID }),
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+    };
+    async function fetchTokens(){
+      setIsLoading(true)
+      const fetcher = await window.fetch(tokenConfigUrl, config)
+      const response = await fetcher.json()
+      setData(response)
+      setIsLoading(false)     
+    }
+    fetchTokens()
 
-  let n = [];
-  let c = [];
-  let a = [];
-  let l = [];
-
-  for (let i = 0; i < balances.length; i++) {
-    balances[i].map((item) => n.push(item.name));
-    balances[i].map((item) => c.push(item.balances.current));
-    balances[i].map((item) => a.push(item.balances.available));
-    balances[i].map((item) => l.push(item.balances.limit));
-  }
-
-  let arr = [];
-
-  for (let i = 0; i < n.length; i++) {
-    arr.push({
-      item_num: i,
-      name: n[i],
-      current: c[i],
-      available: a[i],
-      limit: l[i],
-    });
-  }
-
-  return (
+  }, [userID]);
+  return isLoading ? (
     <div>
-      {arr.map((item) => (
-        <li key={item.item_num}>
-          Account Name: {item.name} | Current Balance: {item.current} | Available Balance: {item.available} | Account Limit: {item.limit}
-        </li>
-      ))}
+      Loadin
     </div>
+  ):(
+    <GetBalance data={data}/>
   );
 }
 

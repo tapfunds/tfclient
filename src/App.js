@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import Landing from "./Pages/ProfilePage/Landing";
 import UserProvider from "./utils/UserProvider";
-import TokenProvider from "./utils/TokenProvider";
 import { NavLink } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 
@@ -47,7 +46,6 @@ const styles = StyleSheet.create({
 function App() {
   return (
     <UserProvider>
-      <TokenProvider>
         <div className={css(styles.wrapper)}>
           <nav className={css(styles.title)}>
             <ul>
@@ -74,7 +72,6 @@ function App() {
           </nav>
           <Landing />
         </div>
-      </TokenProvider>
     </UserProvider>
   );
 }

@@ -6,18 +6,7 @@ import SignUp from "../../Components/UserAuth/SignUp";
 import PasswordReset from "../../Components/UserAuth/PasswordReset";
 import { UserContext  } from '../../utils/UserProvider'
 import { Route, Switch } from "react-router-dom";
-// import { StyleSheet, css } from 'aphrodite';
 
-// const styles = StyleSheet.create({
-
-//   title: {
-//     color: 'white',
-//     fontWeight: 'bold',
-//     fontSize: '72px',
-//     lineHeight: '83.38px',
-//     fontStyle: 'italic'
-//   }
-// });
 
 function Landing() {
   const user = useContext(UserContext);

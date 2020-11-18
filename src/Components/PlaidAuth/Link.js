@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 const tokenURL = `${process.env.REACT_APP_PROD_API_URL}/api/create_link_token`;
 const sendTokenURL = `${process.env.REACT_APP_PROD_API_URL}/api/set_access_token`;
 const saveTokenURL = `${process.env.REACT_APP_DB_API_URL}/tokens`;
-
 function Link() {
   const [data, setData] = useState("");
   const user = useContext(UserContext);
