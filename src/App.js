@@ -58,16 +58,10 @@ function App() {
               </NavLink>
               &nbsp; &nbsp; &nbsp; &nbsp;
               <NavLink to="/" exact style={{ color: "white" }}>
-                Legal
-              </NavLink>{" "}
-              &nbsp; &nbsp; &nbsp; &nbsp;
-              <NavLink to="/" exact style={{ color: "white" }}>
                 Blog
               </NavLink>
               &nbsp; &nbsp; &nbsp; &nbsp;
-              <NavLink to="/" exact style={{ color: "white" }}>
-                Careers
-              </NavLink>
+
             </ul>
           </nav>
           <Landing />
