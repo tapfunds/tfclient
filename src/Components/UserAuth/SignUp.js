@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link} from "react-router-dom";
 import { auth, signInWithGoogle, generateUserDocument } from "../../utils/firebase";
+import Nav from "../Navigation/Nav"
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -37,6 +38,8 @@ const SignUp = () => {
 
   return (
     <div className="mt-8">
+        <Nav/>
+
       <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1>
       <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
         {error !== null && (

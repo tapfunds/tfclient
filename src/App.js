@@ -1,71 +1,23 @@
 import React from "react";
 import "./App.css";
-import Landing from "./Pages/ProfilePage/Landing";
+import Home from "./Pages/ProfilePage/Home";
 import UserProvider from "./utils/UserProvider";
-import { NavLink } from "react-router-dom";
-import { StyleSheet, css } from "aphrodite";
-
-const styles = StyleSheet.create({
-  wrapper: {
-    height: "200vh",
-    minHeight: "200vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "top",
-    padding: "50px",
-    color: "#44487",
-    border: "1px solid #1890ff",
-    backgroundColor: "#48A9FF",
-  },
-  title: {
-    color: "white !important",
-    fontWeight: "bold",
-    fontSize: "30px",
-    lineHeight: "35px",
-    fontStyle: "italic",
-  },
-  button: {
-    padding: "10px 20px",
-    border: "none",
-    borderRadius: "4px",
-    background: "#1890ff",
-    color: "#fff",
-    fontSize: "14px",
-    cursor: "pointer",
-    transition: ".3s background",
-    ":hover": {
-      background: "#40a9ff",
-    },
-  },
-  a: {
-    color: "white",
-  },
-});
+import SignIn from "./Components/UserAuth/SignIn";
+import SignUp from "./Components/UserAuth/SignUp";
+import PasswordReset from "./Components/UserAuth/PasswordReset";
+import Landing from "./Pages/ProfilePage/Landing"
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <UserProvider>
-        <div className={css(styles.wrapper)}>
-          <nav className={css(styles.title)}>
-            <ul>
-              <NavLink to="/" exact style={{ color: "white" }} >
-                Home
-              </NavLink>{" "}
-              &nbsp; &nbsp; &nbsp; &nbsp;
-              <NavLink to="/login" exact style={{ color: "white" }}>
-                Sign In
-              </NavLink>
-              &nbsp; &nbsp; &nbsp; &nbsp;
-              <NavLink to="/" exact style={{ color: "white" }}>
-                Blog
-              </NavLink>
-              &nbsp; &nbsp; &nbsp; &nbsp;
-
-            </ul>
-          </nav>
-          <Landing />
-        </div>
+      <Switch>
+        <Route exact path="/"><Home/></Route>
+        <Route path="/signup"><SignUp/></Route>
+        <Route path="/login"><SignIn/></Route>
+        <Route path="/reset"><PasswordReset/></Route>
+        <Route path="/home"><Landing/></Route>
+      </Switch>
     </UserProvider>
   );
 }

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
 import { auth } from "../../utils/firebase";
-// import { auth, generateUserDocument  } from "../../utils/firebase";
-// import { UserContext } from "../../utils/UserProvider";
+import Nav from "../Navigation/Nav"
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
@@ -31,6 +30,8 @@ const PasswordReset = () => {
   };
   return (
     <div className="mt-8">
+        <Nav/>
+
       <h1 className="text-xl text-center font-bold mb-3">
         Reset your Password
       </h1>

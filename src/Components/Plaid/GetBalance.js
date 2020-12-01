@@ -68,8 +68,8 @@ function GetBalance(props) {
     }
   }
 
-  return isLoading ? (
-    <div>Still Loading</div>
+  return isLoading || isError ? (
+    <div>We got issues captain</div>
   ) : (
     <div>
       {arr.map((item) => (
