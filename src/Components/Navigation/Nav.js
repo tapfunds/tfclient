@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, css } from "aphrodite";
 import { NavLink} from "react-router-dom";
 import image from '../../logo2.svg'
+import { Divider } from 'antd';
 
 const styles = StyleSheet.create({
   nav:{
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
 
 function Nav() {
   return (
+    <React.Fragment>
     <div className={css(styles.nav)}>
       <div className={css(styles.left)}>
         <img  src={image} alt="tapfunds logo go boom"/>
@@ -41,7 +43,10 @@ function Nav() {
         <NavLink to="/login" exact className={css(styles.navtext)}>Sign In</NavLink>
         <NavLink to="/" exact className={css(styles.navtext)}>Blog</NavLink>
       </div>
+
     </div>
+      <Divider/>
+      </React.Fragment>
   );
 }
 

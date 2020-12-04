@@ -4,6 +4,7 @@ import { UserContext  } from '../../utils/UserProvider'
 import { Redirect } from "react-router-dom";
 
 
+
 function Home() {
     const user = useContext(UserContext);
     return  user ? (
@@ -14,8 +15,11 @@ function Home() {
       <header>
       <Nav/>
       </header>
+
       <div>
           This house is not a home
+      </div>
+      <div>
       </div>
     </React.Fragment>
 
