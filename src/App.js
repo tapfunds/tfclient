@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     minHeight: "200vh",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     justifyContent: "top",
     padding: "50px",
     color: "#44487",

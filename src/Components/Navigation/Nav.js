@@ -1,37 +1,47 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
-import {Switch, NavLink} from "react-router-dom";
+import { NavLink} from "react-router-dom";
+import image from '../../logo2.svg'
 
 const styles = StyleSheet.create({
-  title: {
-    flexDirection: "column",
+  nav:{
+    display:"flex",
     alignItems: "center",
-    justifyContent: "top",
-    color: "white !important",
+    minHeight: "56px",
+  },
+  navtext:{
     fontWeight: "bold",
     fontSize: "22px",
     lineHeight: "35px",
     fontStyle: "italic",
-    color: "black"
-  },
-  navtext:{
     color: "black",
-  }
+    textDecoration: "none",
+    padding: "16px",
+    display: "inline-block",
+  },
+  left:{
+    flex: 1,
+
+  },
+  middle:{
+    textAlign: "center",
+    flex: 1,
+  },
 });
 
 
 function Nav() {
   return (
-    <nav className={css(styles.title)}>
-            <ul>
-                <NavLink to="/" exact className={css(styles.navtext)} >Home</NavLink>
-                &nbsp; &nbsp; &nbsp; &nbsp;
-                <NavLink to="/login" exact className={css(styles.navtext)}>Sign In</NavLink>
-                &nbsp; &nbsp; &nbsp; &nbsp;
-                <NavLink to="/" exact className={css(styles.navtext)}>Blog</NavLink>
-                &nbsp; &nbsp; &nbsp; &nbsp;
-            </ul>
-    </nav>
+    <div className={css(styles.nav)}>
+      <div className={css(styles.left)}>
+        <img  src={image} alt="tapfunds logo go boom"/>
+      </div>
+      <div className={css(styles.middle)}>
+        <NavLink to="/" exact className={css(styles.navtext)} >Home</NavLink>
+        <NavLink to="/login" exact className={css(styles.navtext)}>Sign In</NavLink>
+        <NavLink to="/" exact className={css(styles.navtext)}>Blog</NavLink>
+      </div>
+    </div>
   );
 }
 
