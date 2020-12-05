@@ -29,7 +29,7 @@ function Link() {
   const history = useHistory();
 
   const routeChange = useCallback( () => { 
-    let path = `/`; 
+    let path = `/home`; 
     history.push(path);
   }, [history]);
 
