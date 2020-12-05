@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from "../../Components/PlaidAuth/Link";
+import Link from "../Components/PlaidAuth/Link";
 
 
 const PlaidAuth = ({props}) => {

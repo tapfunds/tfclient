@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {auth, signInWithGoogle } from "../../utils/firebase";
-import Nav from "../Navigation/Nav"
+import {auth, signInWithGoogle } from "../utils/firebase";
+import Nav from "../Components/Navigation/Nav"
 
 const SignIn = () => {
 

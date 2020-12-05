@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import {UserContext} from "../../utils/UserProvider";
-import {auth} from '../../utils/firebase';
+import {UserContext} from "../utils/UserProvider";
+import {auth} from '../utils/firebase';
 import { Link } from "react-router-dom";
-import Balance from "../../Components/Plaid/Balance";
+import Balance from "../Components/Plaid/Balance";
 
 const ProfilePage = () => {
   const user = useContext(UserContext);

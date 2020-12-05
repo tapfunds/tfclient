@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
-import { auth } from "../../utils/firebase";
-import Nav from "../Navigation/Nav"
+import { auth } from "../utils/firebase";
+import Nav from "../Components/Navigation/Nav"
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");

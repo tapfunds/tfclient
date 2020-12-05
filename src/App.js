@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
-import Home from "./Pages/ProfilePage/Home";
+import Home from "./Pages/Home";
 import UserProvider from "./utils/UserProvider";
-import SignIn from "./Components/UserAuth/SignIn";
-import SignUp from "./Components/UserAuth/SignUp";
-import PasswordReset from "./Components/UserAuth/PasswordReset";
-import Landing from "./Pages/ProfilePage/Landing"
+import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
+import PasswordReset from "./Pages/PasswordReset";
+import Landing from "./Pages/Landing"
 import { Route, Switch } from "react-router-dom";
+
 
 function App() {
   return (

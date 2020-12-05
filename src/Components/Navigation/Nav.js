@@ -36,12 +36,12 @@ function Nav() {
     <React.Fragment>
     <div className={css(styles.nav)}>
       <div className={css(styles.left)}>
-        <img  src={image} alt="tapfunds logo go boom"/>
+        <NavLink to="/" exact ><img  src={image} alt="tapfunds logo go boom"/></NavLink>
       </div>
       <div className={css(styles.middle)}>
         <NavLink to="/" exact className={css(styles.navtext)} >Home</NavLink>
         <NavLink to="/login" exact className={css(styles.navtext)}>Sign In</NavLink>
-        <NavLink to="/" exact className={css(styles.navtext)}>Blog</NavLink>
+        <a href="www.google.com" exact className={css(styles.navtext)}>Blog</a>
       </div>
 
     </div>
