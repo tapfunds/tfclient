@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   navtext:{
     fontWeight: "bold",
-    fontSize: "22px",
+    fontSize: "19px",
     lineHeight: "35px",
     fontStyle: "italic",
     color: "black",
@@ -41,6 +41,7 @@ function Nav() {
       <div className={css(styles.middle)}>
         <NavLink to="/" exact className={css(styles.navtext)} >Home</NavLink>
         <NavLink to="/login" exact className={css(styles.navtext)}>Sign In</NavLink>
+        <NavLink to="/signup" exact className={css(styles.navtext)}>Sign Up</NavLink>
         <a href="www.google.com" exact className={css(styles.navtext)}>Blog</a>
       </div>
 

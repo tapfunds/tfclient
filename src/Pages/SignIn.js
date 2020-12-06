@@ -2,6 +2,60 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {auth, signInWithGoogle } from "../utils/firebase";
 import Nav from "../Components/Navigation/Nav"
+import { StyleSheet, css } from "aphrodite";
+import { Card, Button } from 'antd';
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingTop: "50px",
+
+  },
+  subwrapper:{
+    paddingLeft: "50px",
+    paddingRight: "50px",    
+  },
+  signIn:{
+    paddingLeft: "50px",
+    paddingRight: "50px",
+    flexGrow: 4,
+    alignSelf: "center",
+    
+  },
+  text: {
+    fontSize: "32px",
+    lineHeight: "35px",
+    color: "black",
+    fontStyle: "italic",
+    fontWeight: "bold",
+    
+  },
+  subtext: {
+    lineHeight: "35px",
+    color: "black",
+    padding: "16px",
+
+  },
+  button:{
+    background: "#48A9FF",
+    border: "none",
+    fontStyle: "italic",
+    color: "white"
+  },
+  footer: {
+    textAlign: "center",
+    paddingBottom: "10px",
+  },
+  card:{
+    lineHeight: "35px",
+    width: "500px",
+    fontSize: "30px",
+  }
+});
+
 
 const SignIn = () => {
 
@@ -30,60 +84,66 @@ const SignIn = () => {
  
 
 return (
-  <div className="mt-8">
-        <Nav/>
+  <div className={css(styles.wrapper)}>
 
-    <h1 className="text-3xl mb-2 text-center font-bold">Sign In</h1>
-    <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-      {error !== null && <div className = "py-4 bg-red-600 w-full text-white text-center mb-3">{error}</div>}
-      <form className="">
-        <label htmlFor="userEmail" className="block">
-          Email:
-        </label>
-        <input
-          type="email"
-          className="my-1 p-1 w-full"
-          name="userEmail"
-          value = {email}
-          placeholder="E.g: faruq123@gmail.com"
-          id="userEmail"
-          onChange = {(event) => onChangeHandler(event)}
-        />
-        <label htmlFor="userPassword" className="block">
-          Password:
-        </label>
-        <input
-          type="password"
-          className="mt-1 mb-3 p-1 w-full"
-          name="userPassword"
-          value = {password}
-          placeholder="Your Password"
-          id="userPassword"
-          onChange = {(event) => onChangeHandler(event)}
-        />
-        <button className="bg-green-400 hover:bg-green-500 w-full py-2 text-white" onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-          Sign in
-        </button>
-      </form>
-      <p className="text-center my-3">or</p>
-      <button
-        className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
-        onClick={() => {
-          signInWithGoogle();
-        }}
-      >
-        Sign in with Google
-      </button>
-      <p className="text-center my-3">
-        Don't have an account?{" "}
-        <Link to="/signup" className="text-blue-500 hover:text-blue-600">
-          Sign up here
-        </Link>{" "}
-        <br />{" "}
-        <Link to="/reset" className="text-blue-500 hover:text-blue-600">
-          Forgot Password?
-        </Link>
-      </p>
+    <div className={css(styles.subwrapper)}>    
+      <Nav/>
+    </div >
+    <div className={css(styles.signIn)}>
+      
+      <Card title={<h1 className={css(styles.text)}>Sign In</h1>} className={css(styles.card)}>
+      {error !== null && <div >{error}</div>}
+        <form >
+          <div className={css(styles.subtext)}>
+            <input
+              type="email"
+              name="userEmail"
+              value = {email}
+              placeholder="Email adderss"
+              id="userEmail"
+              onChange = {(event) => onChangeHandler(event)}
+            />
+          </div>
+
+          <div className={css(styles.subtext)}>
+            <input
+              type="password"
+              name="userPassword"
+              value = {password}
+              placeholder="Password"
+              id="userPassword"
+              onChange = {(event) => onChangeHandler(event)}
+            />
+          </div>
+          <Button className={css(styles.button)} onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
+            Sign in
+          </Button>
+        </form>
+        <div>
+        <Button
+          className={css(styles.button)}
+          onClick={() => {
+            signInWithGoogle();
+          }}
+        >
+          Sign in with Google
+        </Button>
+        </div>
+
+    </Card>
+    <p className="text-center my-3">
+      Don't have an account?{" "}
+      <Link to="/signup" >
+        Sign up here
+      </Link>{" "}
+      <br />{" "}
+      <Link to="/reset">
+        Forgot Password?
+      </Link>
+    </p>
+    </div>
+    <div className={css(styles.footer)}>
+      <a href="emailwho">Contact Us</a> &nbsp; <a href="privacyright">Privacy</a> &nbsp; <a href="legal">Legal</a> &nbsp;
     </div>
   </div>
 );
