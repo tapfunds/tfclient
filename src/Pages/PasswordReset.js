@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
 import { auth } from "../utils/firebase";
-import Nav from "../Components/Navigation/Nav"
+import Nav from "../Components/Navigation/Nav";
 import { StyleSheet, css } from "aphrodite";
 import { Card, Button, Input } from "antd";
 
@@ -56,7 +56,7 @@ const PasswordReset = () => {
   const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
   const [error, setError] = useState(null);
 
-  const onChangeHandler = event => {
+  const onChangeHandler = (event) => {
     const { name, value } = event.currentTarget;
 
     if (name === "userEmail") {
@@ -64,13 +64,15 @@ const PasswordReset = () => {
     }
   };
 
-  const sendResetEmail = event => {
+  const sendResetEmail = (event) => {
     event.preventDefault();
     auth
       .sendPasswordResetEmail(email)
       .then(() => {
-          setEmailHasBeenSent(true);
-        setTimeout(() => {setEmailHasBeenSent(false)}, 3000);
+        setEmailHasBeenSent(true);
+        setTimeout(() => {
+          setEmailHasBeenSent(false);
+        }, 3000);
       })
       .catch(() => {
         setError("Error resetting password");
@@ -78,57 +80,47 @@ const PasswordReset = () => {
   };
   return (
     <React.Fragment>
-        <div className={css(styles.subwrapper)}>
+      <div className={css(styles.subwrapper)}>
         <Nav />
       </div>
       <div className={css(styles.wrapper)}>
-      <div className={css(styles.signIn)}>
-      <Card
-        title={<h1 className={css(styles.text)}>Reset Password</h1>}
-        className={css(styles.card)}
-      >
-        <form action="">
-          {emailHasBeenSent && (
-            <div>
-              An email has been sent to you!
-            </div>
-          )}
-          {error !== null && (
-            <div>
-              {error}
-            </div>
-          )}
-
-          <Input
-            type="email"
-            name="userEmail"
-            id="userEmail"
-            value={email}
-            placeholder="Email"
-            onChange={onChangeHandler}
-          />
-          <Button
-           className={css(styles.button)}
-            onClick={event => {
-              sendResetEmail(event);
-            }}
+        <div className={css(styles.signIn)}>
+          <Card
+            title={<h1 className={css(styles.text)}>Reset Password</h1>}
+            className={css(styles.card)}
           >
-            Send me a reset link
-          </Button>
-        </form>
+            <form action="">
+              {emailHasBeenSent && <div>An email has been sent to you!</div>}
+              {error !== null && <div>{error}</div>}
 
-        </Card>
-        <p> 
-        <Link to="/login"> back to sign in page</Link>
-
-        </p>
-      </div>
-      <div className={css(styles.footer)}>
+              <Input
+                type="email"
+                name="userEmail"
+                id="userEmail"
+                value={email}
+                placeholder="Email"
+                onChange={onChangeHandler}
+              />
+              <Button
+                className={css(styles.button)}
+                onClick={(event) => {
+                  sendResetEmail(event);
+                }}
+              >
+                Send me a reset link
+              </Button>
+            </form>
+          </Card>
+          <p>
+            <Link to="/login"> back to sign in page</Link>
+          </p>
+        </div>
+        <div className={css(styles.footer)}>
           <a href="emailwho">Contact Us</a> &nbsp;{" "}
           <a href="privacyright">Privacy</a> &nbsp; <a href="legal">Legal</a>{" "}
           &nbsp;
         </div>
-    </div>
+      </div>
     </React.Fragment>
   );
 };
