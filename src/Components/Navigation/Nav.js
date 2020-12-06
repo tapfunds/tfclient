@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     display:"flex",
     alignItems: "center",
     minHeight: "56px",
+    paddingTop: "15px",
   },
   navtext:{
     fontWeight: "bold",

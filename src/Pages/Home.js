@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
   subwrapper:{
     paddingLeft: "50px",
     paddingRight: "50px",
+    
+
   },
   text: {
     fontSize: "42px",
@@ -38,10 +40,11 @@ function Home() {
   return user ? (
     <Redirect to="/home" />
   ) : (
-    <div className={css(styles.wrapper)}>
+    <React.Fragment>
       <div className={css(styles.subwrapper)}>
         <Nav />
       </div>
+      <div className={css(styles.wrapper)}>
 
       <div className={css(styles.subwrapper)}>
         <div className={css(styles.text)}>Transfer Money Fast</div>
@@ -66,6 +69,7 @@ function Home() {
         <FooterContainer />
       </div>
     </div>
+    </React.Fragment>
   );
 }
 

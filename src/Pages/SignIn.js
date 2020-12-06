@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import {auth, signInWithGoogle } from "../utils/firebase";
 import Nav from "../Components/Navigation/Nav"
 import { StyleSheet, css } from "aphrodite";
-import { Card, Button } from 'antd';
+import { Card, Button, Input, Space } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: "100vh",
+    height: "82vh",
+    minHeight: "82vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -16,13 +18,14 @@ const styles = StyleSheet.create({
   },
   subwrapper:{
     paddingLeft: "50px",
-    paddingRight: "50px",    
+    paddingRight: "50px",       
   },
   signIn:{
     paddingLeft: "50px",
     paddingRight: "50px",
     flexGrow: 4,
     alignSelf: "center",
+    
     
   },
   text: {
@@ -34,7 +37,6 @@ const styles = StyleSheet.create({
     
   },
   subtext: {
-    lineHeight: "35px",
     color: "black",
     padding: "16px",
 
@@ -43,14 +45,14 @@ const styles = StyleSheet.create({
     background: "#48A9FF",
     border: "none",
     fontStyle: "italic",
-    color: "white"
+    color: "white",
+    
   },
   footer: {
     textAlign: "center",
     paddingBottom: "10px",
   },
   card:{
-    lineHeight: "35px",
     width: "500px",
     fontSize: "30px",
   }
@@ -84,17 +86,28 @@ const SignIn = () => {
  
 
 return (
-  <div className={css(styles.wrapper)}>
+  <React.Fragment>
 
     <div className={css(styles.subwrapper)}>    
       <Nav/>
     </div >
+  <div className={css(styles.wrapper)}>
+
     <div className={css(styles.signIn)}>
       
       <Card title={<h1 className={css(styles.text)}>Sign In</h1>} className={css(styles.card)}>
       {error !== null && <div >{error}</div>}
+        
         <form >
           <div className={css(styles.subtext)}>
+          <Input 
+            placeholder="Email" 
+            type="email"
+              name="userEmail"
+              value = {email}
+              id="userEmail"
+              onChange = {(event) => onChangeHandler(event)}
+          />
             <input
               type="email"
               name="userEmail"
@@ -106,6 +119,10 @@ return (
           </div>
 
           <div className={css(styles.subtext)}>
+          <Input.Password
+            placeholder="input password"
+            iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+          />
             <input
               type="password"
               name="userPassword"
@@ -115,11 +132,13 @@ return (
               onChange = {(event) => onChangeHandler(event)}
             />
           </div>
-          <Button className={css(styles.button)} onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-            Sign in
-          </Button>
+          <div className={css(styles.subtext)}>
+            <Button className={css(styles.button)} onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
+              Sign in
+            </Button>
+          </div>
         </form>
-        <div>
+        <div className={css(styles.subtext)}>
         <Button
           className={css(styles.button)}
           onClick={() => {
@@ -131,7 +150,7 @@ return (
         </div>
 
     </Card>
-    <p className="text-center my-3">
+    <p>
       Don't have an account?{" "}
       <Link to="/signup" >
         Sign up here
@@ -146,6 +165,7 @@ return (
       <a href="emailwho">Contact Us</a> &nbsp; <a href="privacyright">Privacy</a> &nbsp; <a href="legal">Legal</a> &nbsp;
     </div>
   </div>
+  </React.Fragment>
 );
 };
 
