@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 
-const balenceURL = `${process.env.REACT_APP_PROD_API_URL}/api/balance`;
+const balenceURL = `${process.env.REACT_APP_API_URL}/api/balance`;
 
 function GetBalance(props) {
   const [balances, setBalences] = useState([]);

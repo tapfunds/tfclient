@@ -31,7 +31,7 @@ const ProfilePage = () => {
       <div>
          <Balance/> 
       </div>
-      <button className = "w-full py-3 bg-red-600 mt-4 text-white" onClick = {() => {auth.signOut()}}>Sign out</button>
+      <button onClick = {() => {auth.signOut()}}>Sign out</button>
     </div>
   ) 
 };
