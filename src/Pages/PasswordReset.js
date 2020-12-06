@@ -2,6 +2,54 @@ import React, { useState } from "react";
 import { Link } from "@reach/router";
 import { auth } from "../utils/firebase";
 import Nav from "../Components/Navigation/Nav"
+import { StyleSheet, css } from "aphrodite";
+import { Card, Button, Input } from "antd";
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: "82vh",
+    minHeight: "82vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingTop: "50px",
+  },
+  subwrapper: {
+    paddingLeft: "50px",
+    paddingRight: "50px",
+  },
+  signIn: {
+    paddingLeft: "50px",
+    paddingRight: "50px",
+    flexGrow: 4,
+    alignSelf: "center",
+  },
+  text: {
+    fontSize: "32px",
+    lineHeight: "35px",
+    color: "black",
+    fontStyle: "italic",
+    fontWeight: "bold",
+  },
+  subtext: {
+    color: "black",
+    padding: "10px",
+  },
+  button: {
+    background: "#48A9FF",
+    border: "none",
+    fontStyle: "italic",
+    color: "white",
+  },
+  footer: {
+    textAlign: "center",
+    paddingBottom: "10px",
+  },
+  card: {
+    width: "500px",
+    fontSize: "30px",
+  },
+});
 
 const PasswordReset = () => {
   const [email, setEmail] = useState("");
@@ -29,54 +77,59 @@ const PasswordReset = () => {
       });
   };
   return (
-    <div className="mt-8">
-        <Nav/>
-
-      <h1 className="text-xl text-center font-bold mb-3">
-        Reset your Password
-      </h1>
-      <div className="border border-blue-300 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
+    <React.Fragment>
+        <div className={css(styles.subwrapper)}>
+        <Nav />
+      </div>
+      <div className={css(styles.wrapper)}>
+      <div className={css(styles.signIn)}>
+      <Card
+        title={<h1 className={css(styles.text)}>Reset Password</h1>}
+        className={css(styles.card)}
+      >
         <form action="">
           {emailHasBeenSent && (
-            <div className="py-3 bg-green-400 w-full text-white text-center mb-3">
+            <div>
               An email has been sent to you!
             </div>
           )}
           {error !== null && (
-            <div className="py-3 bg-red-600 w-full text-white text-center mb-3">
+            <div>
               {error}
             </div>
           )}
-          <label htmlFor="userEmail" className="w-full block">
-            Email:
-          </label>
-          <input
+
+          <Input
             type="email"
             name="userEmail"
             id="userEmail"
             value={email}
-            placeholder="Input your email"
+            placeholder="Email"
             onChange={onChangeHandler}
-            className="mb-3 w-full px-1 py-2"
           />
-          <button
-            className="w-full bg-blue-400 text-white py-3"
+          <Button
+           className={css(styles.button)}
             onClick={event => {
               sendResetEmail(event);
             }}
           >
             Send me a reset link
-          </button>
+          </Button>
         </form>
 
-        <Link
-          to="/login"
-          className="my-2 text-blue-700 hover:text-blue-800 text-center block"
-        >
-          &larr; back to sign in page
-        </Link>
+        </Card>
+        <p> 
+        <Link to="/login"> back to sign in page</Link>
+
+        </p>
       </div>
+      <div className={css(styles.footer)}>
+          <a href="emailwho">Contact Us</a> &nbsp;{" "}
+          <a href="privacyright">Privacy</a> &nbsp; <a href="legal">Legal</a>{" "}
+          &nbsp;
+        </div>
     </div>
+    </React.Fragment>
   );
 };
 

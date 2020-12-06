@@ -13,10 +13,11 @@ function App() {
   return (
     <UserProvider>
       <Switch>
-        <Route exact path="/"><Home/></Route>
+        <Route path="/reset"><PasswordReset/></Route>
         <Route path="/signup"><SignUp/></Route>
         <Route path="/login"><SignIn/></Route>
         <Route path="/reset"><PasswordReset/></Route>
+        <Route exact path="/"><Home/></Route>
         <Route path="/home"><Landing/></Route>
       </Switch>
     </UserProvider>

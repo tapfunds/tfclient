@@ -1,8 +1,60 @@
 import React, { useState } from "react";
-import { Link} from "react-router-dom";
-import { auth, signInWithGoogle, generateUserDocument } from "../utils/firebase";
-import Nav from "../Components/Navigation/Nav"
+import { Link } from "react-router-dom";
+import {
+  auth,
+  signInWithGoogle,
+  generateUserDocument,
+} from "../utils/firebase";
+import Nav from "../Components/Navigation/Nav";
+import { StyleSheet, css } from "aphrodite";
+import { Card, Button, Input } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 
+const styles = StyleSheet.create({
+  wrapper: {
+    height: "82vh",
+    minHeight: "82vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    paddingTop: "50px",
+  },
+  subwrapper: {
+    paddingLeft: "50px",
+    paddingRight: "50px",
+  },
+  signIn: {
+    paddingLeft: "50px",
+    paddingRight: "50px",
+    flexGrow: 4,
+    alignSelf: "center",
+  },
+  text: {
+    fontSize: "32px",
+    lineHeight: "35px",
+    color: "black",
+    fontStyle: "italic",
+    fontWeight: "bold",
+  },
+  subtext: {
+    color: "black",
+    padding: "10px",
+  },
+  button: {
+    background: "#48A9FF",
+    border: "none",
+    fontStyle: "italic",
+    color: "white",
+  },
+  footer: {
+    textAlign: "center",
+    paddingBottom: "10px",
+  },
+  card: {
+    width: "500px",
+    fontSize: "30px",
+  },
+});
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -10,22 +62,28 @@ const SignUp = () => {
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
 
-  const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
+  const createUserWithEmailAndPasswordHandler = async (
+    event,
+    email,
+    password
+  ) => {
     event.preventDefault();
-    try{
-      const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName});
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      generateUserDocument(user, { displayName });
+    } catch (error) {
+      setError("Error Signing up with email and password");
     }
-    catch(error){
-      setError('Error Signing up with email and password');
-    }
-      
+
     setEmail("");
     setPassword("");
     setDisplayName("");
   };
 
-  const onChangeHandler = event => {
+  const onChangeHandler = (event) => {
     const { name, value } = event.currentTarget;
 
     if (name === "userEmail") {
@@ -38,83 +96,87 @@ const SignUp = () => {
   };
 
   return (
-    <div className="mt-8">
-        <Nav/>
-
-      <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1>
-      <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-        {error !== null && (
-          <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
-            {error}
-          </div>
-        )}
-        <form className="">
-          <label htmlFor="displayName" className="block">
-            Display Name:
-          </label>
-          <input
-            type="text"
-            className="my-1 p-1 w-full "
-            name="displayName"
-            value={displayName}
-            placeholder="E.g: Faruq"
-            id="displayName"
-            onChange={event => onChangeHandler(event)}
-          />
-          <label htmlFor="userEmail" className="block">
-            Email:
-          </label>
-          <input
-            type="email"
-            className="my-1 p-1 w-full"
-            name="userEmail"
-            value={email}
-            placeholder="E.g: faruq123@gmail.com"
-            id="userEmail"
-            onChange={event => onChangeHandler(event)}
-          />
-          <label htmlFor="userPassword" className="block">
-            Password:
-          </label>
-          <input
-            type="password"
-            className="mt-1 mb-3 p-1 w-full"
-            name="userPassword"
-            value={password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange={event => onChangeHandler(event)}
-          />
-          <button
-            className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
-            onClick={event => {
-              createUserWithEmailAndPasswordHandler(event, email, password);
-            }}
-          >
-            Sign up
-          </button>
-        </form>
-        <p className="text-center my-3">or</p>
-        <button
-          onClick={() => {
-            try {
-              signInWithGoogle();
-            } catch (error) {
-              console.error("Error signing in with Google", error);
-            }
-          }}
-          className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
-        >
-          Sign In with Google
-        </button>
-        <p className="text-center my-3">
-          Already have an account?{" "}
-          <Link to="/login" className="text-blue-500 hover:text-blue-600">
-            Sign in here
-          </Link>{" "}
-        </p>
+    <React.Fragment>
+      <div className={css(styles.subwrapper)}>
+        <Nav />
       </div>
-    </div>
+
+      <div className={css(styles.wrapper)}>
+        <div className={css(styles.signIn)}>
+          <Card
+            title={<h1 className={css(styles.text)}>Sign Up</h1>}
+            className={css(styles.card)}
+          >
+            {error !== null && (
+              <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
+                {error}
+              </div>
+            )}
+            <form>
+              <Input
+                type="text"
+                name="displayName"
+                value={displayName}
+                placeholder="Display Name"
+                id="displayName"
+                onChange={(event) => onChangeHandler(event)}
+              />
+              <Input
+                type="email"
+                name="userEmail"
+                value={email}
+                placeholder="Email"
+                id="userEmail"
+                onChange={(event) => onChangeHandler(event)}
+              />
+              <Input.Password
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
+                type="password"
+                name="userPassword"
+                value={password}
+                placeholder="Password"
+                id="userPassword"
+                onChange={(event) => onChangeHandler(event)}
+              />
+              <Button
+                className={css(styles.button)}
+                onClick={(event) => {
+                  createUserWithEmailAndPasswordHandler(event, email, password);
+                }}
+              >
+                Sign up
+              </Button>
+            </form>
+            <Button
+              onClick={() => {
+                try {
+                  signInWithGoogle();
+                } catch (error) {
+                  console.error("Error signing in with Google", error);
+                }
+              }}
+              className={css(styles.button)}
+            >
+              Sign up with Google
+            </Button>
+          </Card>
+
+          <p className="text-center my-3">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-500 hover:text-blue-600">
+              Sign in here
+            </Link>{" "}
+          </p>
+        </div>
+        <div className={css(styles.footer)}>
+          <a href="emailwho">Contact Us</a> &nbsp;{" "}
+          <a href="privacyright">Privacy</a> &nbsp; <a href="legal">Legal</a>{" "}
+          &nbsp;
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 
