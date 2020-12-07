@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../utils/UserProvider";
 import Balance from "../Components/Plaid/Balance";
 import { StyleSheet, css } from "aphrodite";
-import ProfileNav from "../Components/Navigation/ProfileNav";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -38,11 +38,8 @@ const ProfilePage = () => {
   const { displayName } = user;
   console.log(user);
 
-  return (
+  return user ? (
     <React.Fragment>
-      <div className={css(styles.subwrapper)}>
-        <ProfileNav />
-      </div>
       <div className={css(styles.wrapper)}>
         <div className={css(styles.text)}>
           <h2>Whats goodie, {displayName}!</h2>
@@ -52,13 +49,9 @@ const ProfilePage = () => {
         </div>
       </div>
     </React.Fragment>
+  ): (
+    <Loading3QuartersOutlined style={{ width: "600px", height: "600px" }} />
   );
 };
 
 export default ProfilePage;
-
-// {
-//   /* <div>
-// <Button className={css(styles.button)} onClick = {() => {auth.signOut()}}>Sign out</Button>
-// </div> */
-// }

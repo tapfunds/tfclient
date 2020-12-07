@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 import { Row, Col, Card, Button } from 'antd';
-import {auth} from '../../utils/firebase';
+
 const balenceURL = `${process.env.REACT_APP_API_URL}/api/balance`;
 
 function GetBalance(props) {
@@ -22,14 +22,14 @@ function GetBalance(props) {
         data: qs.stringify({ access_token: "token" }),
       };
 
-      let users = [];
+      let user_accounts = [];
       let promises = [];
       for (let i = 0; i < t.data.length; i++) {
         config.data = qs.stringify({ access_token: t.data[i].accesstoken });
         promises.push(
           axios(config)
             .then((response) => {
-              users.push(response.data.accounts);
+              user_accounts.push(response.data.accounts);
             })
             .catch((error) => {
               setIsError(true);
@@ -37,7 +37,7 @@ function GetBalance(props) {
         );
       }
       setIsLoading(false);
-      Promise.all(promises).then(() => setBalences(users));
+      Promise.all(promises).then(() => setBalences(user_accounts));
     } else {
       setTimeout(t.data, 250);
     }
@@ -95,7 +95,6 @@ function GetBalance(props) {
 
       ))}
     </Row>
-    <button onClick = {() => {auth.signOut()}}>Sign out</button>
     </div>
   );
 }

@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, css } from "aphrodite";
-import { NavLink} from "react-router-dom";
-import image from '../../logo2.svg'
-import { Divider } from 'antd';
+import { NavLink } from "react-router-dom";
+import image from "../../logo2.svg";
+import { Divider } from "antd";
+import { UserContext } from "../../utils/UserProvider";
 
 const styles = StyleSheet.create({
-  nav:{
-    display:"flex",
+  nav: {
+    display: "flex",
     alignItems: "center",
     minHeight: "56px",
     paddingTop: "15px",
   },
-  navtext:{
+  navtext: {
     fontWeight: "bold",
     fontSize: "19px",
     lineHeight: "35px",
@@ -21,35 +22,70 @@ const styles = StyleSheet.create({
     padding: "16px",
     display: "inline-block",
   },
-  left:{
+  left: {
     flex: 1,
-
   },
-  middle:{
+  middle: {
     textAlign: "center",
     flex: 1,
   },
 });
 
-
 function Nav() {
-  return (
-    <React.Fragment>
+  const user = useContext(UserContext);
+
+  return user ? <NavigationAuth /> : <NavigationNonAuth />;
+}
+
+const NavigationAuth = () => (
+  <React.Fragment>
     <div className={css(styles.nav)}>
       <div className={css(styles.left)}>
-        <NavLink to="/" exact ><img  src={image} alt="tapfunds logo go boom"/></NavLink>
+        <NavLink to="/home" exact>
+          <img src={image} alt="tapfunds logo go boom" />
+        </NavLink>
       </div>
       <div className={css(styles.middle)}>
-        <NavLink to="/" exact className={css(styles.navtext)} >Home</NavLink>
-        <NavLink to="/login" exact className={css(styles.navtext)}>Sign In</NavLink>
-        <NavLink to="/signup" exact className={css(styles.navtext)}>Sign Up</NavLink>
-        <a href="www.google.com" exact className={css(styles.navtext)}>Blog</a>
+        <NavLink to="/stats" exact className={css(styles.navtext)}>
+          Money{" "}
+        </NavLink>
+        <NavLink to="/auth" exact className={css(styles.navtext)}>
+          Connect Account
+        </NavLink>
+        <NavLink to="/settings" exact className={css(styles.navtext)}>
+          Settings
+        </NavLink>
       </div>
-
     </div>
-      <Divider/>
-      </React.Fragment>
-  );
-}
+    <Divider />
+  </React.Fragment>
+);
+
+const NavigationNonAuth = () => (
+  <React.Fragment>
+    <div className={css(styles.nav)}>
+      <div className={css(styles.left)}>
+        <NavLink to="/" exact>
+          <img src={image} alt="tapfunds logo go boom" />
+        </NavLink>
+      </div>
+      <div className={css(styles.middle)}>
+        <NavLink to="/" exact className={css(styles.navtext)}>
+          Home
+        </NavLink>
+        <NavLink to="/login" exact className={css(styles.navtext)}>
+          Sign In
+        </NavLink>
+        <NavLink to="/signup" exact className={css(styles.navtext)}>
+          Sign Up
+        </NavLink>
+        <a href="www.google.com" exact className={css(styles.navtext)}>
+          Blog
+        </a>
+      </div>
+    </div>
+    <Divider />
+  </React.Fragment>
+);
 
 export default Nav;
