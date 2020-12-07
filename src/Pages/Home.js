@@ -1,5 +1,5 @@
 import React from "react";
-import ProfilePage from "./Profile";
+import Profile from "../Components/ProfilePage/Profile";
 import { UserContext } from "../utils/UserProvider";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import { StyleSheet, css } from "aphrodite";
@@ -21,7 +21,7 @@ function Home() {
       {user => (
       <div className={css(styles.wrapper)}>
         <div>
-          <ProfilePage />
+          <Profile />
         </div>
       <div>
         <FooterContainer />

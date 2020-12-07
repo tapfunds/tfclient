@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { UserContext } from "../utils/UserProvider";
-import Balance from "../Components/Plaid/Balance";
+import { UserContext } from "../../utils/UserProvider";
+import Balance from "../Plaid/Balance";
 import { StyleSheet, css } from "aphrodite";
-import withAuthorization from "../utils/withAuthorization";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -33,25 +32,23 @@ const styles = StyleSheet.create({
   balance: {},
 });
 
-const ProfilePage = () => {
+const Profile = () => {
   const user = useContext(UserContext);
   const { displayName } = user;
   console.log(user);
 
   return (
-      <UserContext.Consumer>
-      {user => (<div className={css(styles.wrapper)}>
+    <React.Fragment>
+      <div className={css(styles.wrapper)}>
         <div className={css(styles.text)}>
           <h2>Whats goodie, {displayName}!</h2>
         </div>
         <div>
           <Balance />
         </div>
-      </div>)}
-      </UserContext.Consumer>
+      </div>
+    </React.Fragment>
   );
 };
 
-const condition = user => !!user;
-
-export default withAuthorization(condition)(ProfilePage);
+export default Profile;

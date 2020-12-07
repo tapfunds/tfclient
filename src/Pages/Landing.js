@@ -50,7 +50,7 @@ function Landing() {
         <div className={css(styles.subwrapper)}>
           Sign up now!{" "}
           <button>
-            <Link to="/login">Tap your finances</Link>
+            <Link to="/signin">Tap your finances</Link>
           </button>
         </div>
         <div>
