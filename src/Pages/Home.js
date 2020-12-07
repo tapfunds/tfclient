@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import ProfilePage from "./Profile";
+import React from "react";
+import Profile from "../Components/ProfilePage/Profile";
 import { UserContext } from "../utils/UserProvider";
-import { Loading3QuartersOutlined } from "@ant-design/icons";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import { StyleSheet, css } from "aphrodite";
+import withAuthorization from "../utils/withAuthorization";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -16,21 +16,23 @@ const styles = StyleSheet.create({
 });
 
 function Home() {
-  const user = useContext(UserContext);
-  return user ? (
-    <React.Fragment>
+  return (
+    <UserContext.Consumer>
+      {user => (
       <div className={css(styles.wrapper)}>
         <div>
-          <ProfilePage />
+          <Profile />
         </div>
-      </div>
       <div>
         <FooterContainer />
       </div>
-    </React.Fragment>
-  ) : (
-    <Loading3QuartersOutlined style={{ width: "600px", height: "600px" }} />
-  );
+      </div>
+      )}
+    </UserContext.Consumer>
+
+  )
 }
 
-export default Home;
+const condition = user => !!user;
+
+export default withAuthorization(condition)(Home);

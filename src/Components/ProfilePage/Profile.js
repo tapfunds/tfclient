@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { UserContext } from "../utils/UserProvider";
-import Balance from "../Components/Plaid/Balance";
+import { UserContext } from "../../utils/UserProvider";
+import Balance from "../Plaid/Balance";
 import { StyleSheet, css } from "aphrodite";
-import { Loading3QuartersOutlined } from "@ant-design/icons";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -33,12 +32,12 @@ const styles = StyleSheet.create({
   balance: {},
 });
 
-const ProfilePage = () => {
+const Profile = () => {
   const user = useContext(UserContext);
   const { displayName } = user;
   console.log(user);
 
-  return user ? (
+  return (
     <React.Fragment>
       <div className={css(styles.wrapper)}>
         <div className={css(styles.text)}>
@@ -49,9 +48,7 @@ const ProfilePage = () => {
         </div>
       </div>
     </React.Fragment>
-  ): (
-    <Loading3QuartersOutlined style={{ width: "600px", height: "600px" }} />
   );
 };
 
-export default ProfilePage;
+export default Profile;

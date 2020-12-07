@@ -8,9 +8,12 @@ import PasswordReset from "./Pages/PasswordReset";
 import Landing from "./Pages/Landing";
 import Settings from "./Pages/Settings";
 import PlaidAuth from "./Pages/PlaidAuth";
+import FourOhFour from "./Pages/FourOhFour";
+import Stats from "./Pages/Stats";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
 import Nav from "./Components/Navigation/Nav"
+
 const App = () => {
   return (
     <UserProvider>
@@ -26,6 +29,11 @@ const App = () => {
           <Route path={ROUTES.HOME} component={Home}/>
           <Route path={ROUTES.AUTH} component={PlaidAuth}/>
           <Route path={ROUTES.SETTING} component={Settings}/>
+          <Route path={ROUTES.STATS} component={Stats}/>
+          <Route path="*" >
+            <FourOhFour/>
+          </Route>
+
         </div>
       </Router>
     </UserProvider>

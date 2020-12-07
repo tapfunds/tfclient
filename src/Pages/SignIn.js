@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, signInWithGoogle } from "../utils/firebase";
-import Nav from "../Components/Navigation/Nav";
 import { StyleSheet, css } from "aphrodite";
 import { Card, Button, Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
@@ -77,9 +76,6 @@ const SignIn = () => {
 
   return (
     <React.Fragment>
-      <div className={css(styles.subwrapper)}>
-        <Nav />
-      </div>
       <div className={css(styles.wrapper)}>
         <div className={css(styles.signIn)}>
           <Card

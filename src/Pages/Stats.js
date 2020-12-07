@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { UserContext } from "../utils/UserProvider";
+import withAuthorization from "../utils/withAuthorization";
 
-const Stats = () =>{
-    return(
-        <div> Some Statistics from your account </div>
-    );
-}
+const Stats = () => {
+  return (
+    <UserContext.Provider>
+      {user => (<div> Some Statistics from your account </div>)}
+    </UserContext.Provider>
+  );
+};
 
-export default Stats;
+const condition = (user) => !!user;
+export default withAuthorization(condition)(Stats);
