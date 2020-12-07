@@ -3,7 +3,8 @@ import { UserContext } from "../utils/UserProvider";
 import { Redirect, Link } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
-
+import withAuthorization from "../utils/withAuthorization";
+ 
 const styles = StyleSheet.create({
   wrapper: {
     height: "200vh",
@@ -36,9 +37,7 @@ const styles = StyleSheet.create({
 
 function Landing() {
   const user = useContext(UserContext);
-  return user ? (
-    <Redirect to="/home" />
-  ) : (
+  return (
     <React.Fragment>
       <div className={css(styles.wrapper)}>
 

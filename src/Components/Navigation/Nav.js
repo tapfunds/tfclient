@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import image from "../../logo2.svg";
 import { Divider } from "antd";
 import { UserContext } from "../../utils/UserProvider";
+import * as ROUTES from "../../constants/routes"
 
 const styles = StyleSheet.create({
   nav: {
@@ -41,18 +42,18 @@ const NavigationAuth = () => (
   <React.Fragment>
     <div className={css(styles.nav)}>
       <div className={css(styles.left)}>
-        <NavLink to="/home" exact>
+        <NavLink to={ROUTES.HOME} exact>
           <img src={image} alt="tapfunds logo go boom" />
         </NavLink>
       </div>
       <div className={css(styles.middle)}>
-        <NavLink to="/stats" exact className={css(styles.navtext)}>
+        <NavLink to={ROUTES.STATS} exact className={css(styles.navtext)}>
           Money{" "}
         </NavLink>
-        <NavLink to="/auth" exact className={css(styles.navtext)}>
+        <NavLink to={ROUTES.AUTH} exact className={css(styles.navtext)}>
           Connect Account
         </NavLink>
-        <NavLink to="/settings" exact className={css(styles.navtext)}>
+        <NavLink to={ROUTES.SETTING} exact className={css(styles.navtext)}>
           Settings
         </NavLink>
       </div>
@@ -65,18 +66,15 @@ const NavigationNonAuth = () => (
   <React.Fragment>
     <div className={css(styles.nav)}>
       <div className={css(styles.left)}>
-        <NavLink to="/" exact>
+        <NavLink to={ROUTES.LANDING} exact>
           <img src={image} alt="tapfunds logo go boom" />
         </NavLink>
       </div>
       <div className={css(styles.middle)}>
-        <NavLink to="/" exact className={css(styles.navtext)}>
-          Home
-        </NavLink>
-        <NavLink to="/login" exact className={css(styles.navtext)}>
+        <NavLink to={ROUTES.SIGN_IN} exact className={css(styles.navtext)}>
           Sign In
         </NavLink>
-        <NavLink to="/signup" exact className={css(styles.navtext)}>
+        <NavLink to={ROUTES.SIGN_UP} exact className={css(styles.navtext)}>
           Sign Up
         </NavLink>
         <a href="www.google.com" exact className={css(styles.navtext)}>
