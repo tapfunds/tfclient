@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import ProfilePage from "./Profile";
 import { UserContext } from "../utils/UserProvider";
-import { Loading3QuartersOutlined } from "@ant-design/icons";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import { StyleSheet, css } from "aphrodite";
 import withAuthorization from "../utils/withAuthorization";
@@ -17,7 +16,6 @@ const styles = StyleSheet.create({
 });
 
 function Home() {
-  const user = useContext(UserContext);
   return (
     <UserContext.Consumer>
       {user => (

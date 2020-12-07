@@ -10,7 +10,7 @@ const withAuthorization = condition => Component => {
       this.listener = auth.onAuthStateChanged(
         user => {
           if (!condition(user)) {
-            this.props.history.push(ROUTES.LANDING);
+            this.props.history.push(ROUTES.SIGN_IN);
           }
         },
       );
