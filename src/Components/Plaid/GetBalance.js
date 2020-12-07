@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 import { Row, Col, Card, Button } from 'antd';
+import {auth} from '../../utils/firebase';
 const balenceURL = `${process.env.REACT_APP_API_URL}/api/balance`;
 
 function GetBalance(props) {
@@ -94,7 +95,7 @@ function GetBalance(props) {
 
       ))}
     </Row>
-
+    <button onClick = {() => {auth.signOut()}}>Sign out</button>
     </div>
   );
 }
