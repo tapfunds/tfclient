@@ -1,39 +1,64 @@
 import React, { useContext } from "react";
-import {UserContext} from "../utils/UserProvider";
-import {auth} from '../utils/firebase';
-import { Link } from "react-router-dom";
+import { UserContext } from "../utils/UserProvider";
 import Balance from "../Components/Plaid/Balance";
+import { StyleSheet, css } from "aphrodite";
+import ProfileNav from "../Components/Navigation/ProfileNav";
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: "82vh",
+    minHeight: "82vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: "50px",
+  },
+  button: {
+    background: "#48A9FF",
+    border: "none",
+    fontStyle: "italic",
+    color: "white",
+  },
+  footer: {
+    textAlign: "center",
+    paddingBottom: "10px",
+  },
+  text: {
+    fontSize: "25px",
+    lineHeight: "35px",
+    color: "black",
+    fontStyle: "italic",
+    fontWeight: "bold",
+  },
+  balance: {},
+});
 
 const ProfilePage = () => {
   const user = useContext(UserContext);
-  const {photoURL, displayName, email} = user;
+  const { displayName } = user;
   console.log(user);
-  
 
   return (
-    <div className = "mx-auto w-11/12 md:w-2/4 py-8 px-4 md:px-8">
-      <div className="flex border flex-col items-center md:flex-row md:items-start border-blue-400 px-3 py-4">
-        <div
-          style={{
-            background: `url(${photoURL || 'https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png'})  no-repeat center center`,
-            backgroundSize: "cover",
-            height: "200px",
-            width: "200px"
-          }}
-          className="border border-blue-300"
-        ></div>
-        <div className = "md:pl-4">
-        <h2 className = "text-2xl font-semibold">{displayName}</h2>
-        <h3 className = "italic">{email}</h3>
+    <React.Fragment>
+      <div className={css(styles.subwrapper)}>
+        <ProfileNav />
+      </div>
+      <div className={css(styles.wrapper)}>
+        <div className={css(styles.text)}>
+          <h2>Whats goodie, {displayName}!</h2>
         </div>
-        <Link to="/auth"><button>Connect Accounts</button></Link>
+        <div>
+          <Balance />
+        </div>
       </div>
-      <div>
-         <Balance/> 
-      </div>
-      <button onClick = {() => {auth.signOut()}}>Sign out</button>
-    </div>
-  ) 
+    </React.Fragment>
+  );
 };
 
 export default ProfilePage;
+
+// {
+//   /* <div>
+// <Button className={css(styles.button)} onClick = {() => {auth.signOut()}}>Sign out</Button>
+// </div> */
+// }
