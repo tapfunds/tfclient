@@ -86,8 +86,8 @@ function GetBalance(props) {
                   Current Balance: {item.current} <br />
                   Available Balance: {item.available} <br />
                   Account Limit: {item.limit} <br />
-                  <Transfer action={"Send"} lable={"Send"} />
-                  &nbsp; <Transfer action={"Recieve"} lable={"Recieve"} />
+                  <Transfer action={"Send"} lable={"Send"} accnt={item.account}/>
+                  &nbsp; <Transfer action={"Recieve"} lable={"Recieve"} accnt={item.account}/>
                 </li>
               </Card>
             </div>
