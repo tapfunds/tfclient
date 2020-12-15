@@ -6,3 +6,4 @@ export const AUTH = '/auth';
 export const RESET = '/reset';
 export const SETTING = '/settings';
 export const STATS = '/stats';
+export const FOF = '*';

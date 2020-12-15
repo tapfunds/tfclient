@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {UserContext} from "../../utils/UserProvider";
 import GetBalance from "./GetBalance";
 import qs from "qs";
+import "./GetBalance.css";
 
 const tokenConfigUrl = `${process.env.REACT_APP_DB_API_URL}/token`
 
@@ -32,7 +33,9 @@ function Balance() {
       Loadin
     </div>
   ):(
-    <GetBalance data={data}/>
+    <div className="container">
+      <GetBalance data={data}/>
+    </div>
   );
 }
 

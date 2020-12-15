@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
-import { Row, Col, Card } from "antd";
+// import { Row, Col, Card } from "antd";
 import Transfer from "../Plaid/Transfer";
+import "./GetBalance.css";
 
 const balenceURL = `${process.env.REACT_APP_API_URL}/api/balance`;
+
 
 function GetBalance(props) {
   const [balances, setBalences] = useState([]);
@@ -75,25 +77,19 @@ function GetBalance(props) {
   return isLoading || isError ? (
     <div>We got issues captain</div>
   ) : (
-    <div>
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+    <div className="main">
+      <div className="grid">
         {arr.map((item) => (
-          <Col key={item.item_num} className="gutter-row" span={6}>
-            <div>
-              <Card title={item.name} style={{ width: 300 }}>
-                <li>
-                  Account Name: {item.name} <br />
-                  Current Balance: {item.current} <br />
-                  Available Balance: {item.available} <br />
-                  Account Limit: {item.limit} <br />
-                  <Transfer action={"Send"} lable={"Send"} accnt={item.account}/>
-                  &nbsp; <Transfer action={"Recieve"} lable={"Recieve"} accnt={item.account}/>
-                </li>
-              </Card>
-            </div>
-          </Col>
+          <div className="card">
+            Account Name: {item.name} <br />
+            Current Balance: {item.current} <br />
+            Available Balance: {item.available} <br />
+            Account Limit: {item.limit} <br />
+            <Transfer action={"Send"} lable={"Send"} accnt={item.account}/>
+            &nbsp; <Transfer action={"Recieve"} lable={"Recieve"} accnt={item.account}/>
+          </div>
         ))}
-      </Row>
+      </div>
     </div>
   );
 }

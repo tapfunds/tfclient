@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Home from "./Pages/Home";
 import UserProvider from "./utils/UserProvider";
 import SignIn from "./Pages/SignIn";
@@ -8,11 +7,10 @@ import PasswordReset from "./Pages/PasswordReset";
 import Landing from "./Pages/Landing";
 import Settings from "./Pages/Settings";
 import PlaidAuth from "./Pages/PlaidAuth";
-import FourOhFour from "./Pages/FourOhFour";
 import Stats from "./Pages/Stats";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
-import Nav from "./Components/Navigation/Nav"
+import Nav from "./Components/Navigation/Nav";
 
 const App = () => {
   return (
@@ -30,10 +28,6 @@ const App = () => {
           <Route path={ROUTES.AUTH} component={PlaidAuth}/>
           <Route path={ROUTES.SETTING} component={Settings}/>
           <Route path={ROUTES.STATS} component={Stats}/>
-          <Route path="*" >
-            <FourOhFour/>
-          </Route>
-
         </div>
       </Router>
     </UserProvider>

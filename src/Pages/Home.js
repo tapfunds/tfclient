@@ -7,8 +7,7 @@ import withAuthorization from "../utils/withAuthorization";
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: "150vh",
-    minHeight: "300vh",
+    minHeight: "350vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -23,9 +22,9 @@ function Home() {
         <div>
           <Profile />
         </div>
-      <div>
-        <FooterContainer />
-      </div>
+        <div>
+          <FooterContainer />
+        </div>
       </div>
       )}
     </UserContext.Consumer>
