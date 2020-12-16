@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
-// import { Row, Col, Card } from "antd";
+import { Row, Col } from "antd";
 import Transfer from "../Plaid/Transfer";
 import "./GetBalance.css";
 
 const balenceURL = `${process.env.REACT_APP_API_URL}/api/balance`;
-
 
 function GetBalance(props) {
   const [balances, setBalences] = useState([]);
@@ -48,6 +47,7 @@ function GetBalance(props) {
   let arr = [];
 
   if (balances.length > 0) {
+
     let n = [];
     let c = [];
     let a = [];
@@ -68,7 +68,7 @@ function GetBalance(props) {
         current: c[i],
         available: a[i],
         limit: l[i],
-        account: accnt[i]
+        account: accnt[i],
       });
     }
   }
@@ -79,16 +79,27 @@ function GetBalance(props) {
   ) : (
     <div className="main">
       <div className="grid">
-        {arr.map((item) => (
-          <div className="card">
-            Account Name: {item.name} <br />
-            Current Balance: {item.current} <br />
-            Available Balance: {item.available} <br />
-            Account Limit: {item.limit} <br />
-            <Transfer action={"Send"} lable={"Send"} accnt={item.account}/>
-            &nbsp; <Transfer action={"Recieve"} lable={"Recieve"} accnt={item.account}/>
-          </div>
-        ))}
+        <Row>
+          {arr.map((item) => (
+            <Col key={item.item_num}>
+              <div className="card">
+                Account Name: {item.name} <br />
+                Current Balance: {item.current} <br />
+                Available Balance: {item.available} <br />
+                Account Limit: {item.limit} 
+                <br />
+                <br />
+                <Transfer action={"Send"} lable={"Send"} accnt={item.account} />
+                &nbsp;{" "}
+                <Transfer
+                  action={"Recieve"}
+                  lable={"Recieve"}
+                  accnt={item.account}
+                />
+              </div>
+            </Col>
+          ))}
+        </Row>
       </div>
     </div>
   );

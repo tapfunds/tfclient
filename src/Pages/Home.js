@@ -7,22 +7,29 @@ import withAuthorization from "../utils/withAuthorization";
 
 const styles = StyleSheet.create({
   wrapper: {
-    minHeight: "350vh",
+    height: "300vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
   },
+  child:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignSelf: "auto"
+  }
 });
 
 function Home() {
   return (
     <UserContext.Consumer>
+      
       {user => (
       <div className={css(styles.wrapper)}>
-        <div>
+        <div className={css(styles.child)}>
           <Profile />
         </div>
-        <div>
+        <div className={css(styles.child)}>
           <FooterContainer />
         </div>
       </div>

@@ -96,7 +96,7 @@ const SignUp = () => {
 
   return (
     <React.Fragment>
-<div className={css(styles.wrapper)}>
+      <div className={css(styles.wrapper)}>
         <div className={css(styles.signIn)}>
           <Card
             title={<h1 className={css(styles.text)}>Sign Up</h1>}
