@@ -4,7 +4,7 @@ import GetBalance from "./GetBalance";
 import qs from "qs";
 import "./GetBalance.css";
 
-const tokenConfigUrl = `${process.env.REACT_APP_DB_API_URL}/token`
+const tokenConfigUrl = `${process.env.REACT_APP_API_URL}/token`
 
 function Balance() {
   const user = useContext(UserContext);
