@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   auth,
-  signInWithGoogle,
   generateUserDocument,
+  provider
 } from "../utils/firebase";
 import { StyleSheet, css } from "aphrodite";
 import { Card, Button, Input } from "antd";
@@ -60,7 +60,11 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
+  let history = useHistory();
 
+  const redirect = () => {
+    history.push('/home')
+  }
   const createUserWithEmailAndPasswordHandler = async (
     event,
     email,
@@ -68,10 +72,15 @@ const SignUp = () => {
   ) => {
     event.preventDefault();
     try {
+      const redirect = () => {
+        history.push('/signin')
+      }
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
         password
-      );
+      ).then(()=>{
+        redirect()
+      });
       generateUserDocument(user, { displayName });
     } catch (error) {
       setError("Error Signing up with email and password");
@@ -80,6 +89,16 @@ const SignUp = () => {
     setEmail("");
     setPassword("");
     setDisplayName("");
+  };
+
+
+  const signInWithGoogle = () => {
+    auth.signInWithPopup(provider).then(()=>{
+      redirect()
+    }).catch((error) => {
+      setError("Error signing in with Google");
+      console.error("Error signing in with Google", error);
+    });
   };
 
   const onChangeHandler = (event) => {

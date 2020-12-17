@@ -80,9 +80,6 @@ const PasswordReset = () => {
   };
   return (
     <React.Fragment>
-      <div className={css(styles.subwrapper)}>
-        <Nav />
-      </div>
       <div className={css(styles.wrapper)}>
         <div className={css(styles.signIn)}>
           <Card
