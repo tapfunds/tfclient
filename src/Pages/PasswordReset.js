@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "@reach/router";
+import { Link } from "@reach/router";
 import { auth } from "../utils/firebase";
-import Nav from "../Components/Navigation/Nav";
 import { StyleSheet, css } from "aphrodite";
 import { Card, Button, Input } from "antd";
+import { useHistory } from "react-router-dom";
 
 const styles = StyleSheet.create({
   wrapper: {
