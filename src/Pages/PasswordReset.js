@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
+import { Link, useHistory } from "@reach/router";
 import { auth } from "../utils/firebase";
 import Nav from "../Components/Navigation/Nav";
 import { StyleSheet, css } from "aphrodite";
@@ -55,7 +55,11 @@ const PasswordReset = () => {
   const [email, setEmail] = useState("");
   const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
   const [error, setError] = useState(null);
+  let history = useHistory();
 
+  const redirect = () => {
+    history.push('/signin')
+  }
   const onChangeHandler = (event) => {
     const { name, value } = event.currentTarget;
 
@@ -70,6 +74,7 @@ const PasswordReset = () => {
       .sendPasswordResetEmail(email)
       .then(() => {
         setEmailHasBeenSent(true);
+        redirect()
         setTimeout(() => {
           setEmailHasBeenSent(false);
         }, 3000);
