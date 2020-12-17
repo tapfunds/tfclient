@@ -5,7 +5,7 @@ import { Row, Col } from "antd";
 import Transfer from "../Plaid/Transfer";
 import "./GetBalance.css";
 
-const balenceURL = `${process.env.REACT_APP_API_URL}/api/balance`;
+const balenceURL = `${process.env.REACT_APP_DEV_API_URL}/api/balance`;
 
 function GetBalance(props) {
   const [balances, setBalences] = useState([]);
@@ -31,6 +31,12 @@ function GetBalance(props) {
         promises.push(
           axios(config)
             .then((response) => {
+              // console.log(response.data.error.StatusCode)
+              // if (response.data.error.StatusCode === 400){
+              //   console.log("we need to handle this")
+              // }
+              console.log(response.data)
+
               user_accounts.push(response.data.accounts);
             })
             .catch((error) => {
@@ -46,6 +52,7 @@ function GetBalance(props) {
   }, [t]);
   let arr = [];
 
+
   if (balances.length > 0) {
 
     let n = [];
@@ -54,11 +61,13 @@ function GetBalance(props) {
     let l = [];
     let accnt = [];
     for (let i = 0; i < balances.length; i++) {
-      balances[i].map((item) => n.push(item.name));
-      balances[i].map((item) => c.push(item.balances.current));
-      balances[i].map((item) => a.push(item.balances.available));
-      balances[i].map((item) => l.push(item.balances.limit));
-      balances[i].map((item) => accnt.push(item.account_id));
+      if (typeof balances[i] !== "undefined"){
+        balances[i].map((item) => n.push(item.name));
+        balances[i].map((item) => c.push(item.balances.current));
+        balances[i].map((item) => a.push(item.balances.available));
+        balances[i].map((item) => l.push(item.balances.limit));
+        balances[i].map((item) => accnt.push(item.account_id));
+      }
     }
 
     for (let i = 0; i < n.length; i++) {
@@ -72,8 +81,8 @@ function GetBalance(props) {
       });
     }
   }
-  console.log(arr);
-  console.log(balances);
+  // console.log(balances);
+  // console.log(arr);
   return isLoading || isError ? (
     <div>We got issues captain</div>
   ) : (
@@ -106,3 +115,4 @@ function GetBalance(props) {
 }
 
 export default GetBalance;
+
