@@ -11,22 +11,33 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    paddingTop: "50px",
+
   },
   subwrapper: {
     paddingLeft: "50px",
     paddingRight: "50px",
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent:"center",
+  },
+  sihnupwrapper: {
+    paddingLeft: "50px",
+    paddingRight: "50px",
+    textAlign: "center",
+
   },
   text: {
-    fontSize: "42px",
+    paddingTop:"15px",
+    fontSize: "72px",
     lineHeight: "35px",
-    color: "black",
     fontStyle: "italic",
     fontWeight: "bold",
   },
   subtext: {
-    lineHeight: "35px",
-    color: "black",
+    fontSize: "42px",
+    paddingTop:"15px",
+
   },
 });
 
@@ -34,24 +45,25 @@ function Landing() {
   return (
     <React.Fragment>
       <div className={css(styles.wrapper)}>
-        <div className={css(styles.subwrapper)}>
+
+        <div className={css(styles.subwrapper)} style={{color: "white", backgroundColor:"#313030", height:"66vh"}}>
           <div className={css(styles.text)}>Transfer Money Fast</div>
-          <p className={css(styles.subtext)}>
+          <p className={css(styles.subtext)} style={{color:"white"}}>
             Safely transfer funds bewteen any of your personal accounts
           </p>
         </div>
 
-        <div className={css(styles.subwrapper)}>
+        <div className={css(styles.subwrapper)} style={{ height:"66vh"}}>
           <div className={css(styles.text)}>Understand Spending Habits</div>
           <p className={css(styles.subtext)}>
             View account trends to advise yourself on better money habits
           </p>
         </div>
-        <div className={css(styles.subwrapper)}>
-          Sign up now!{" "}
-          <button>
-            <Link to="/signin">Tap your finances</Link>
-          </button>
+        <div className={css(styles.sihnupwrapper)} style={{ height:"25vh"}}>
+          Sign up now!{" "} <br/>
+          
+            <Link to="/signin"><button>Tap your finances</button></Link>
+          
         </div>
         <div>
           <FooterContainer />
