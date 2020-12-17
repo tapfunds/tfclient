@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import withAuthorization from "../utils/withAuthorization";
-
+import {CustomButton} from "../Components/Button/Button";
 const styles = StyleSheet.create({
   wrapper: {
     height: "200vh",
@@ -60,9 +60,12 @@ function Landing() {
           </p>
         </div>
         <div className={css(styles.sihnupwrapper)} style={{ height:"25vh"}}>
-          Sign up now!{" "} <br/>
-          
-            <Link to="/signin"><button>Tap your finances</button></Link>
+            <div className={css(styles.subtext)}>
+            Sign up now!{" "} <br/>
+
+            </div>
+            
+            <Link to="/signin" ><CustomButton text="Tap your finances"/></Link>
           
         </div>
         <div>
