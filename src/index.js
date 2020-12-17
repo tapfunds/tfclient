@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "antd/dist/antd.css";
-import { BrowserRouter as Router, hashHistory as history } from "react-router-dom";
-import routes from "./Components/Routes/Routes"
+import { BrowserRouter as Router} from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
+
 ReactDOM.render(
     <React.StrictMode>
-        <Router routes={routes} history={history}>
+        <Router  history={history}>
             <App />
         </Router>
     </React.StrictMode>,
