@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, signInWithGoogle } from "../utils/firebase";
+import { auth, provider } from "../utils/firebase";
 import { StyleSheet, css } from "aphrodite";
 import { Card, Button, Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { useHistory  } from "react-router-dom";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -56,11 +57,28 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  let history = useHistory();
+
+  const redirect = () => {
+    history.push('/home')
+  }
+
   const signInWithEmailAndPasswordHandler = (event, email, password) => {
     event.preventDefault();
-    auth.signInWithEmailAndPassword(email, password).catch((error) => {
+    auth.signInWithEmailAndPassword(email, password).then(()=>{
+      redirect()
+    }).catch((error) => {
       setError("Error signing in with password and email!");
       console.error("Error signing in with password and email", error);
+    });
+  };
+
+  const signInWithGoogle = () => {
+    auth.signInWithPopup(provider).then(()=>{
+      redirect()
+    }).catch((error) => {
+      setError("Error signing in with Google");
+      console.error("Error signing in with Google", error);
     });
   };
 
