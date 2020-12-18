@@ -4,6 +4,9 @@ import { StyleSheet, css } from "aphrodite";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import withAuthorization from "../utils/withAuthorization";
 import {CustomButton} from "../Components/Button/Button";
+import { UserContext } from "../utils/UserProvider";
+
+
 const styles = StyleSheet.create({
   wrapper: {
     height: "200vh",
@@ -43,6 +46,8 @@ const styles = StyleSheet.create({
 
 function Landing() {
   return (
+    <UserContext.Consumer>
+
     <React.Fragment>
       <div className={css(styles.wrapper)}>
 
@@ -73,6 +78,8 @@ function Landing() {
         </div>
       </div>
     </React.Fragment>
+    </UserContext.Consumer>
+
   );
 }
 
