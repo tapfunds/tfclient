@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import image from "../../logo2.svg";
 import { Divider } from "antd";
 import { UserContext } from "../../utils/UserProvider";
-import * as ROUTES from "../../constants/routes"
+import * as ROUTES from "../../constants/routes";
+
 
 const styles = StyleSheet.create({
   nav: {

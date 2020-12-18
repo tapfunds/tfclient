@@ -35,7 +35,6 @@ function GetBalance(props) {
               // if (response.data.error.StatusCode === 400){
               //   console.log("we need to handle this")
               // }
-              console.log(response.data)
 
               user_accounts.push(response.data.accounts);
             })
