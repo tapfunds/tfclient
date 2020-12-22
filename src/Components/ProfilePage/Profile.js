@@ -43,10 +43,10 @@ const Profile = () => {
         <div className={css(styles.text)}>
           <h2>Whats goodie, {displayName}!</h2>
           <p>
-            Sandbox Credentials
+            Sandbox Credentials for Plaid Link
           </p>
           <p>
-            password: pass_good
+            username: user_good
           </p>
           <p>
             password: pass_good
