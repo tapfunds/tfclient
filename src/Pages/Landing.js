@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
-import withAuthorization from "../utils/withAuthorization";
+import withoutAuthorization from "../utils/withoutAuth";
+import {CustomButton} from "../Components/Button/Button";
+import { UserContext } from "../utils/UserProvider";
+
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -43,36 +46,43 @@ const styles = StyleSheet.create({
 
 function Landing() {
   return (
-    <React.Fragment>
-      <div className={css(styles.wrapper)}>
+    <UserContext.Consumer>
 
-        <div className={css(styles.subwrapper)} style={{color: "white", backgroundColor:"#313030", height:"66vh"}}>
-          <div className={css(styles.text)}>Transfer Money Fast</div>
-          <p className={css(styles.subtext)} style={{color:"white"}}>
-            Safely transfer funds bewteen any of your personal accounts
-          </p>
-        </div>
+      {user=>(<React.Fragment>
+        <div className={css(styles.wrapper)}>
 
-        <div className={css(styles.subwrapper)} style={{ height:"66vh"}}>
-          <div className={css(styles.text)}>Understand Spending Habits</div>
-          <p className={css(styles.subtext)}>
-            View account trends to advise yourself on better money habits
-          </p>
+          <div className={css(styles.subwrapper)} style={{color: "white", backgroundColor:"#313030", height:"66vh"}}>
+            <div className={css(styles.text)}>Transfer Money Fast</div>
+            <p className={css(styles.subtext)} style={{color:"white"}}>
+              Safely transfer funds bewteen any of your personal accounts
+            </p>
+          </div>
+
+          <div className={css(styles.subwrapper)} style={{ height:"66vh"}}>
+            <div className={css(styles.text)}>Understand Spending Habits</div>
+            <p className={css(styles.subtext)}>
+              View account trends to advise yourself on better money habits
+            </p>
+          </div>
+          <div className={css(styles.sihnupwrapper)} style={{ height:"25vh"}}>
+              <div className={css(styles.subtext)}>
+              Sign up now!{" "} <br/>
+
+              </div>
+              
+              <Link to="/signin" ><CustomButton text="Tap your finances"/></Link>
+            
+          </div>
+          <div>
+            <FooterContainer />
+          </div>
         </div>
-        <div className={css(styles.sihnupwrapper)} style={{ height:"25vh"}}>
-          Sign up now!{" "} <br/>
-          
-            <Link to="/signin"><button>Tap your finances</button></Link>
-          
-        </div>
-        <div>
-          <FooterContainer />
-        </div>
-      </div>
-    </React.Fragment>
+      </React.Fragment>)}
+    </UserContext.Consumer>
+
   );
 }
 
 const condition = (user) => !user;
 
-export default withAuthorization(condition)(Landing);
+export default withoutAuthorization(condition)(Landing);

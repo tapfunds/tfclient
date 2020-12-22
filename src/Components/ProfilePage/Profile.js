@@ -42,6 +42,15 @@ const Profile = () => {
       <div className={css(styles.wrapper)}>
         <div className={css(styles.text)}>
           <h2>Whats goodie, {displayName}!</h2>
+          <p>
+            Sandbox Credentials for Plaid Link
+          </p>
+          <p>
+            username: user_good
+          </p>
+          <p>
+            password: pass_good
+          </p>
         </div>
         <div>
           <Balance />

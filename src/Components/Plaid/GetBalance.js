@@ -5,7 +5,7 @@ import { Row, Col } from "antd";
 import Transfer from "../Plaid/Transfer";
 import "./GetBalance.css";
 
-const balenceURL = `${process.env.REACT_APP_API_URL}/api/balance`;
+const balenceURL = `${process.env.REACT_APP_DEV_API_URL}/api/balance`;
 
 function GetBalance(props) {
   const [balances, setBalences] = useState([]);
@@ -35,7 +35,6 @@ function GetBalance(props) {
               // if (response.data.error.StatusCode === 400){
               //   console.log("we need to handle this")
               // }
-              console.log(response.data)
 
               user_accounts.push(response.data.accounts);
             })
