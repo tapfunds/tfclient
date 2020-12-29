@@ -80,8 +80,8 @@ function GetBalance(props) {
       });
     }
   }
-  // console.log(balances);
-  // console.log(arr);
+  console.log(balances);
+  console.log(arr);
   return isLoading || isError ? (
     <div>We got issues captain</div>
   ) : (

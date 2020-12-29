@@ -11,7 +11,7 @@ const Transfer = (props) => {
     //     const config = {
     //       method: "POST",
     //       body: qs.stringify({ account_id: props.accnt }),
-    //       headers: { "content-type": "application/x-www-form-urlencoded" },
+    //       headers: { "content-type": "application/json" },
     //     };
     //     async function initTransfer(){
     //       setIsLoading(true)

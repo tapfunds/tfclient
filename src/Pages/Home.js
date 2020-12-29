@@ -16,7 +16,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    alignSelf: "auto"
+    alignSelf: "auto",
+    padding: "13px"
+  },
+  footer:{
+    display: "flex",
+    flexDirection: "column",
+    alignSelf: "auto",
+    paddingTop: "13px"
   }
 });
 
@@ -29,7 +36,7 @@ function Home() {
         <div className={css(styles.child)}>
           <Profile />
         </div>
-        <div className={css(styles.child)}>
+        <div className={css(styles.footer)}>
           <FooterContainer />
         </div>
       </div>
