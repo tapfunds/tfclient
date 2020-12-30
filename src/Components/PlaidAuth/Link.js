@@ -5,9 +5,9 @@ import axios from "axios";
 import qs from "qs";
 import { useHistory } from "react-router-dom";
 
-const tokenURL = `${process.env.REACT_APP_API_URL}/api/create_link_token`;
-const sendTokenURL = `${process.env.REACT_APP_API_URL}/api/set_access_token`;
-const saveTokenURL = `${process.env.REACT_APP_API_URL}/tokens`;
+const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/create_link_token`;
+const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/set_access_token`;
+const saveTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/newitem`;
 
 function Link() {
   const [data, setData] = useState("");
@@ -20,6 +20,7 @@ function Link() {
       url: tokenURL,
     };
     const res = await axios(config);
+    console.log(0)
     setData(res.data.link_token);
   }, []);
 
@@ -40,12 +41,12 @@ function Link() {
       method: "post",
       url: sendTokenURL,
       data: qs.stringify({ public_token: token }),
-      headers: { "content-type": "application/x-www-form-urlencoded" },
+      headers: { "content-type": "application/json" },
     };
     try {
       const response = await axios(config);
       const saveConfig = {
-        method: "post",
+        method: "get",
         url: saveTokenURL,
         data: qs.stringify(
           { 
@@ -56,7 +57,7 @@ function Link() {
             
           }
         ),
-        headers: { "content-type": "application/x-www-form-urlencoded" },
+        headers: { "content-type": "application/json" },
       };
       await axios(saveConfig);
     } catch (error) {

@@ -5,7 +5,7 @@ import { Row, Col } from "antd";
 import Transfer from "../Plaid/Transfer";
 import "./GetBalance.css";
 
-const balenceURL = `${process.env.REACT_APP_DEV_API_URL}/api/balance`;
+const balenceURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/balance`;
 
 function GetBalance(props) {
   const [balances, setBalences] = useState([]);

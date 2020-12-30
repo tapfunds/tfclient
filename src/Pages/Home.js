@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     alignSelf: "auto",
-    padding: "13px"
+    padding: "13px",
+    paddingBottom: "13px"
   },
   footer:{
     display: "flex",
