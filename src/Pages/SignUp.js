@@ -8,8 +8,6 @@ import {
 import { StyleSheet, css } from "aphrodite";
 import { Card, Button, Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import withoutAuthorization from "../utils/withoutAuth";
-import { UserContext } from "../utils/UserProvider";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -116,8 +114,7 @@ const SignUp = () => {
   };
 
   return (
-    <UserContext.Consumer>
-    {user =>(<React.Fragment>
+    <React.Fragment>
       <div className={css(styles.wrapper)}>
         <div className={css(styles.signIn)}>
           <Card
@@ -193,10 +190,8 @@ const SignUp = () => {
           &nbsp;
         </div>
       </div>
-    </React.Fragment>)}
-    </UserContext.Consumer>
+    </React.Fragment>
   );
 };
 
-const condition = (user) => !user;
-export default withoutAuthorization(condition)(SignUp);
+export default SignUp;

@@ -4,18 +4,18 @@ import reducer from './modules/index'
 
 
 // FOR LOCAL BUILD
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const store = createStore(
-//   reducer,  
-//   composeEnhancers(
-//     applyMiddleware(thunk)
-//   )
-// );
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducer,  
+  composeEnhancers(
+    applyMiddleware(thunk)
+  )
+);
 
 // FOR PRODUCTION BUILD
-const store = createStore(
-    reducer,  
-      applyMiddleware(thunk)
-  );
+// const store = createStore(
+//     reducer,  
+//       applyMiddleware(thunk)
+//   );
 
 export default store;

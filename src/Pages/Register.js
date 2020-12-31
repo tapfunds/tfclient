@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
 
 import "./Auth.css";
-import Navigation from '../Components/Navigation/Nav'
 import { SignUp } from '../store/modules/auth/actions/authAction';
 
 
@@ -43,9 +42,7 @@ const Register = () => {
 
     return (
       <div className="App" id="page-container">
-        <div>
-          <Navigation />
-        </div>
+
         <div className="container Auth">
         <Card className="card-style">
           <CardHeader>Welcome To SeamFlow</CardHeader>

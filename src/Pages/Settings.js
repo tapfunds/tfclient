@@ -1,13 +1,10 @@
 import React from "react";
 import { auth } from "../utils/firebase";
 import { Button } from "antd";
-import { UserContext } from "../utils/UserProvider";
-import withAuthorization from "../utils/withAuthorization";
 
 const Settings = () => {
   return (
-    <UserContext.Consumer>
-      {(user) => (
+
         <Button
           onClick={() => {
             auth.signOut();
@@ -15,10 +12,7 @@ const Settings = () => {
         >
           Sign out
         </Button>
-      )}
-    </UserContext.Consumer>
   );
 };
 
-const condition = (user) => !!user;
-export default withAuthorization(condition)(Settings);
+export default Settings;

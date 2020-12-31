@@ -22,12 +22,13 @@ if (localStorage.token){
 
 ReactDOM.render(
     <React.StrictMode>
-        <Router history={history}>
         <Provider store={store}>
+        <Router history={history}>
             
             <App />
-        </Provider>
         </Router>
+
+        </Provider>
     </React.StrictMode>,
     document.getElementById("root")
 );

@@ -12,7 +12,7 @@ import Settings from "../../Pages/Settings";
 import PlaidAuth from "../../Pages/PlaidAuth";
 import Stats from "../../Pages/Stats";
 import FoF from "../../Pages/FourOhFour"
-import { Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 
 const App = () => {

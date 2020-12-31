@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
-import withoutAuthorization from "../utils/withoutAuth";
 import {CustomButton} from "../Components/Button/Button";
-import { UserContext } from "../utils/UserProvider";
 
 
 const styles = StyleSheet.create({
@@ -46,9 +44,7 @@ const styles = StyleSheet.create({
 
 function Landing() {
   return (
-    <UserContext.Consumer>
-
-      {user=>(<React.Fragment>
+    <React.Fragment>
         <div className={css(styles.wrapper)}>
 
           <div className={css(styles.subwrapper)} style={{color: "white", backgroundColor:"#313030", height:"66vh"}}>
@@ -77,12 +73,10 @@ function Landing() {
             <FooterContainer />
           </div>
         </div>
-      </React.Fragment>)}
-    </UserContext.Consumer>
+      </React.Fragment>
 
   );
 }
 
-const condition = (user) => !user;
 
-export default withoutAuthorization(condition)(Landing);
+export default Landing;

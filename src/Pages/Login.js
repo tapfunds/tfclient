@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
 
 import "./Auth.css";
-import Navigation from '../Components/Navigation/Nav'
 import { SignIn } from '../store/modules/auth/actions/authAction';
 
 
@@ -43,9 +42,6 @@ const Login = () => {
 
     return (
       <div className="App" id="page-container">
-        <div>
-          <Navigation />
-        </div>
         <div className="container Auth">
         <Card className="card-style">
           <CardHeader>Login</CardHeader>

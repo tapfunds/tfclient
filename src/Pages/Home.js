@@ -1,9 +1,7 @@
 import React from "react";
 import Profile from "../Components/ProfilePage/Profile";
-import { UserContext } from "../utils/UserProvider";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import { StyleSheet, css } from "aphrodite";
-import withAuthorization from "../utils/withAuthorization";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -30,9 +28,7 @@ const styles = StyleSheet.create({
 
 function Home() {
   return (
-    <UserContext.Consumer>
-      
-      {user => (
+    
       <div className={css(styles.wrapper)}>
         <div className={css(styles.child)}>
           <Profile />
@@ -41,12 +37,9 @@ function Home() {
           <FooterContainer />
         </div>
       </div>
-      )}
-    </UserContext.Consumer>
 
   )
 }
 
-const condition = user => !!user;
 
-export default withAuthorization(condition)(Home);
+export default Home;
