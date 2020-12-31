@@ -2,7 +2,7 @@ import API_ROUTE from "../../../../constants/routes";
 import axios from 'axios'
 import setAuthorizationToken  from "../../../../authorization/authorization";
 import { BEFORE_STATE, SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR, DELETE_USER_SUCCESS, DELETE_USER_ERROR } from '../authTypes'
-import  {history} from '../../../../history'
+import { history } from "../../../../utils/history";
 
 
 export const SignIn = (credentials) => {
