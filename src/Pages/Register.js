@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
 
 import "./Auth.css";
-import Navigation from '../Navigation'
-import { SignUp } from '../../store/modules/auth/actions/authAction';
+import Navigation from '../Components/Navigation/Nav'
+import { SignUp } from '../store/modules/auth/actions/authAction';
 
 
 

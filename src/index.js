@@ -3,17 +3,30 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux"
 import "antd/dist/antd.css";
-import { Router} from "react-router-dom";
-import { createBrowserHistory } from "history";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import store from './store/index'
+import setAuthorizationToken  from './utils/authorization';
+import { LOGIN_SUCCESS } from './store/modules/auth/authTypes';
+import { Router } from "react-router-dom";
+import {history} from './utils/history';
 
-const history = createBrowserHistory();
+//when the page reloads, the auth user is still set
+if (localStorage.token){
+    setAuthorizationToken(localStorage.token) 
+    let userData = localStorage.getItem('user_data') == null ? null : JSON.parse(localStorage.getItem('user_data'))
+    store.dispatch({ type: LOGIN_SUCCESS, payload: userData}) //provided he has a valid token 
+  
+  }
 
 ReactDOM.render(
     <React.StrictMode>
-        <Router  history={history}>
+        <Router history={history}>
+        <Provider store={store}>
+            
             <App />
+        </Provider>
         </Router>
     </React.StrictMode>,
     document.getElementById("root")

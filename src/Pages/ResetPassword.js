@@ -3,9 +3,10 @@ import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "rea
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
 
-import Navigation from '../Navigation'
-import { ResetPassword } from '../../store/modules/auth/actions/authAction';
-import Message from '../utils/Message';
+import Navigation from '../Components/Navigation/Nav'
+import { ResetPassword } from '../store/modules/auth/actions/authAction';
+import Message from '../Components/Message/Message';
+
 
 
 const PasswordReset = (props) => {

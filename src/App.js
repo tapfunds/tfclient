@@ -1,17 +1,15 @@
 import React from "react";
-import UserProvider from "./utils/UserProvider";
 import Nav from "./Components/Navigation/Nav";
 import Routes from "./Components/Routes/Routes";
 
 const App = () => {
   return (
-    <UserProvider>
+    <React.Fragment>
         <div>
           <Nav/>
         </div>
-
         <Routes/>
-    </UserProvider>
+    </React.Fragment>
   );
 }
 
