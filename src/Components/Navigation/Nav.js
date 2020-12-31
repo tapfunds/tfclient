@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import image from "../../logo2.svg";
 import * as ROUTES from "../../constants/routes";
-import { useSelector, useDispatch } from "react-redux";
-import { SignOut } from '../../store/modules/auth/actions/authAction';
+import { useSelector } from "react-redux";
 import './Nav.css'
 
 
@@ -14,10 +13,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+} from 'reactstrap';
 
 
 
@@ -27,27 +23,7 @@ const Navigation = () => {
 
   const currentState = useSelector((state) => state);
   
-  const { isAuthenticated, currentUser } = currentState.Auth;
-
-  const dispatch = useDispatch()
-
-  const logoutUser  = () => dispatch(SignOut());
-
-
-
-  let imagePreview = null;
-  if(currentUser && currentUser.avatar_path){
-    imagePreview = (<img className="img_style_nav" src={currentUser.avatar_path} alt="profile 1"/>);
-  } else {
-    imagePreview = (<img className="img_style_nav" src={"Default"} alt="profile 2"/>);
-  }
-
-  const logout = (e) => {
-    e.preventDefault()
-    logoutUser()
-  }
-
-  const userProfile = isAuthenticated ?  `/profile/${currentState.Auth.currentUser.id}` : ""
+  const { isAuthenticated } = currentState.Auth;
 
   const SignedInLinks = (
               <React.Fragment>
@@ -60,22 +36,7 @@ const Navigation = () => {
               <NavLink to={ROUTES.SETTING}  className="mt-2" style={{marginRight: "15px" }}>
                 Settings
               </NavLink>
-                  <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    {imagePreview}
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>
-                      <NavItem>
-                        <NavLink to={userProfile}>Profile</NavLink>
-                      </NavItem>
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>
-                      <button onClick={logout}>Logout</button>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                  
               </React.Fragment>
 
             )

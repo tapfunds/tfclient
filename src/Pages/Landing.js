@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
 import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import {CustomButton} from "../Components/Button/Button";
+import { useSelector } from "react-redux";
 
 
 const styles = StyleSheet.create({
-  wrapper: {
+  wrapper: {  
     height: "200vh",
     minHeight: "200vh",
     display: "flex",
@@ -43,6 +44,10 @@ const styles = StyleSheet.create({
 });
 
 function Landing() {
+  const currentState = useSelector((state) => state.Auth);
+  if(currentState.isAuthenticated){
+    return <Redirect to='/home' />
+  }
   return (
     <React.Fragment>
         <div className={css(styles.wrapper)}>

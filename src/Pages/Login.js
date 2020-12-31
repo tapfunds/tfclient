@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
-
 import "./Auth.css";
 import { SignIn } from '../store/modules/auth/actions/authAction';
-
-
 
 
 const Login = () => {
@@ -37,7 +34,7 @@ const Login = () => {
   }
 
   if(currentState.isAuthenticated){
-    return <Redirect to='/' />
+    return <Redirect to='/home' />
   }
 
     return (
