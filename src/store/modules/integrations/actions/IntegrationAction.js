@@ -35,7 +35,6 @@ export const createIntegration = (createIntegration) => {
 
     try {
       const res =  axios.post(`${API_ROUTE}/new_integration`, createIntegration);
-      console.log("Creation res",res)
       dispatch({
         type: CREATE_INTEGRATION_SUCCESS,
         payload: res.data.response,

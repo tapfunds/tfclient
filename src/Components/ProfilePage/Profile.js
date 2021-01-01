@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../utils/UserProvider";
+import React from "react";
 import { StyleSheet, css } from "aphrodite";
+import { useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -32,15 +32,18 @@ const styles = StyleSheet.create({
 });
 
 const Profile = () => {
-  const user = useContext(UserContext);
-  const { displayName } = user;
+  const currentUserState = useSelector((state) => state.Auth);
+
+  const user = currentUserState.currentUser
+  ? currentUserState.currentUser
+  : "";
   console.log(user);
 
   return (
     <React.Fragment>
       <div className={css(styles.wrapper)}>
         <div className={css(styles.text)}>
-          <h2>Whats goodie, {displayName}!</h2>
+          <h2>Whats goodie, {user.username}!</h2>
           <p>
             Sandbox Credentials for Plaid Link
           </p>
