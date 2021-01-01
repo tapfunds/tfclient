@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../utils/UserProvider";
-import Balance from "../Plaid/Balance";
 import { StyleSheet, css } from "aphrodite";
 
 const styles = StyleSheet.create({
@@ -53,7 +52,6 @@ const Profile = () => {
           </p>
         </div>
         <div>
-          <Balance />
         </div>
       </div>
     </React.Fragment>

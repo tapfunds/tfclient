@@ -21,7 +21,7 @@ if (localStorage.token){
   }
 
 ReactDOM.render(
-    <React.StrictMode>
+    <React.Fragment>
         <Provider store={store}>
         <Router history={history}>
             
@@ -29,7 +29,7 @@ ReactDOM.render(
         </Router>
 
         </Provider>
-    </React.StrictMode>,
+    </React.Fragment>,
     document.getElementById("root")
 );
 

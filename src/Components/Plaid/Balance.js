@@ -4,7 +4,7 @@ import GetBalance from "./GetBalance";
 import qs from "qs";
 import "./GetBalance.css";
 
-const tokenConfigUrl = `${process.env.REACT_APP_DEV_API_URL}/api/v1/retrieveitems`
+const tokenConfigUrl = `${process.env.REACT_APP_DEV_API_URL}/api/v1/user_integrations`
 
 function Balance() {
   const user = useContext(UserContext);
@@ -16,7 +16,7 @@ function Balance() {
     const config = {
       method: "POST",
       body: qs.stringify({ user_id: userID }),
-      headers: { "content-type": "application/x-www-form-urlencoded" },
+      headers: { "content-type": "application/json" },
     };
     async function fetchTokens(){
       setIsLoading(true)

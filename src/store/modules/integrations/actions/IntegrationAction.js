@@ -10,7 +10,7 @@ import {
   DELETE_INTEGRATION_ERROR,
   FETCH_AUTH_INTEGRATIONS,
   FETCH_AUTH_INTEGRATIONS_ERROR,
-} from "../postsTypes";
+} from "../integrationsTypes/index";
 import { history } from "../../../../utils/history";
 
 export const fetchUserIntegrations = () => {
@@ -30,16 +30,17 @@ export const fetchUserIntegrations = () => {
 };
 
 export const createIntegration = (createIntegration) => {
-  return async (dispatch) => {
+  return  (dispatch) => {
     dispatch({ type: BEFORE_STATE_INTEGRATION });
 
     try {
-      const res = await axios.post(`${API_ROUTE}/new_integration`, createIntegration);
+      const res =  axios.post(`${API_ROUTE}/new_integration`, createIntegration);
+      console.log("Creation res",res)
       dispatch({
         type: CREATE_INTEGRATION_SUCCESS,
         payload: res.data.response,
       });
-      history.push("/");
+      history.push("/home");
     } catch (err) {
       dispatch({ type: CREATE_INTEGRATION_ERROR, payload: err.response.data.error });
     }
@@ -79,7 +80,7 @@ export const deleteIntegration = (id) => {
           message: res.data.response,
         },
       });
-      history.push("/");
+      history.push("/home");
     } catch (err) {
       dispatch({ type: DELETE_INTEGRATION_ERROR, payload: err.response.data.error });
     }
