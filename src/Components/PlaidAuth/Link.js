@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import axios from "axios";
 import qs from "qs";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   createIntegration
@@ -9,7 +10,6 @@ import {
 
 const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/create_link_token`;
 const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/set_access_token`;
-// const saveTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/new_integration`;
 
 function Link() {
   const [data, setData] = useState("");
@@ -35,7 +35,12 @@ function Link() {
     fetchToken();
   }, [fetchToken]);
 
+  const history = useHistory();
 
+  const routeChange = useCallback( () => { 
+    let path = `/home`; 
+    history.push(path);
+  }, [history]);
 
   const onSuccess = useCallback(async (token, metadata) => {
     const sendToken = (integrationDetails) => dispatch(createIntegration(integrationDetails));
@@ -45,7 +50,7 @@ function Link() {
       method: "post",
       url: sendTokenURL,
       data: qs.stringify({ public_token: token }),
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/x-www-form-urlencoded" },
     };
     try {
       const response = await axios(config);
@@ -55,6 +60,7 @@ function Link() {
         User: user,
         ItemID: response.data.item_id,
         AccessToken: response.data.access_token,
+        access_token_institution: response.data.access_token_institution
         
       }
       sendToken(details)
@@ -62,8 +68,9 @@ function Link() {
       console.error(error);
     }
 
-    
-  }, [AuthID, user, dispatch]);
+
+    routeChange()
+  }, [AuthID, user, dispatch, routeChange]);
 
   const config = {
     token: data,
