@@ -1,40 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
-import {UserContext} from "../../utils/UserProvider";
+import React, { useEffect, useState } from "react";
 import GetBalance from "./GetBalance";
-import qs from "qs";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUserIntegrations } from "../../store/modules/integrations/actions/IntegrationAction";
 import "./GetBalance.css";
 
-const tokenConfigUrl = `${process.env.REACT_APP_DEV_API_URL}/api/v1/user_integrations`
 
 function Balance() {
-  const user = useContext(UserContext);
-  const userID = user.uid
-  const [ data, setData ] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  
+  const currentUserState = useSelector((state) => state.Auth);
+  const AuthID = currentUserState.currentUser
+    ? currentUserState.currentUser.id
+    : "";
+  const dispatch = useDispatch();
+  console.log("user ID",AuthID)
+
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const config = {
-      method: "POST",
-      body: qs.stringify({ user_id: userID }),
-      headers: { "content-type": "application/json" },
-    };
-    async function fetchTokens(){
-      setIsLoading(true)
-      const fetcher = await window.fetch(tokenConfigUrl, config)
-      const response = await fetcher.json()
-      setData(response)
-      setIsLoading(false)     
-    }
-    fetchTokens()
+    const getTokens = (ID) => dispatch(fetchUserIntegrations(ID));
 
-  }, [userID]);
+    getTokens(AuthID);
+    setIsLoading(false)
+  }, [dispatch, AuthID]);
   return isLoading ? (
-    <div>
-      Loadin
-    </div>
-  ):(
+    <div>Loadin</div>
+  ) : (
     <div className="container">
-      <GetBalance data={data}/>
+      <GetBalance data={data} />
     </div>
   );
 }

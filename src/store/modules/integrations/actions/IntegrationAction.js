@@ -13,17 +13,20 @@ import {
 } from "../integrationsTypes/index";
 import { history } from "../../../../utils/history";
 
-export const fetchUserIntegrations = () => {
+export const fetchUserIntegrations = (id) => {
   return async (dispatch) => {
     dispatch({ type: BEFORE_STATE_INTEGRATION });
 
     try {
-      const res = await axios.get(`${API_ROUTE}/user_integrations/`);
+      const res = await axios.get(`${API_ROUTE}/user_integrations/${id}`);
+      console.log(res.data.response)
       dispatch({ type: FETCH_AUTH_INTEGRATIONS, payload: res.data.response });
     } catch (err) {
+      console.log(err.response)
+
       dispatch({
         type: FETCH_AUTH_INTEGRATIONS_ERROR,
-        payload: err.response.data.error,
+        payload: err.response,
       });
     }
   };

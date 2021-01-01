@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
 import { useSelector } from "react-redux";
+import Balance from "../Plaid/Balance";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -55,6 +56,7 @@ const Profile = () => {
           </p>
         </div>
         <div>
+          <Balance/>
         </div>
       </div>
     </React.Fragment>
