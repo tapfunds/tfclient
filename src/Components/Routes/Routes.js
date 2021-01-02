@@ -1,7 +1,6 @@
 import React from "react";
 import Home from "../../Pages/Home";
 import SignIn from "../../Pages/SignIn";
-import SignUp from "../../Pages/SignUp";
 import Login from "../../Pages/Login";
 import Register from "../../Pages/Register";
 import ForgotPassword from "../../Pages/ForgotPassword";
@@ -20,7 +19,6 @@ const App = () => {
        <div className="App">
         <Switch>
             <Route exact path={ROUTES.LANDING} component={Landing}/>
-            <Route path={ROUTES.SIGN_UP} component={SignUp}/>
             <Route path={ROUTES.SIGN_IN} component={SignIn}/>
             <Route path={ROUTES.RESET} component={PasswordReset}/>
             <Route path={ROUTES.HOME} component={Home}/>

@@ -14,7 +14,15 @@ const styles = StyleSheet.create({
     border: "none",
     fontStyle: "italic",
     color: "white",
-  }
+  },
+  subtext: {
+    color: "black",
+    padding: "10px",
+  },
+  card: {
+    width: "360px",
+    fontSize: "17px",
+  },
 });
 
 const Register = () => {
@@ -53,7 +61,7 @@ const Register = () => {
       <div className="App" id="page-container">
 
         <div className="container Auth">
-        <Card className="card-style">
+        <Card  className={css(styles.card)}>
           <CardHeader>Welcome To Tapfunds</CardHeader>
           <CardBody>
           <form onSubmit={submitUser}>
