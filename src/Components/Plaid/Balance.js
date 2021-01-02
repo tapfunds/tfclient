@@ -14,7 +14,7 @@ function Balance() {
   const dispatch = useDispatch();
   console.log("user ID",AuthID)
 
-  const [data, setData] = useState([]);
+  const [data] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
