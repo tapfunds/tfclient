@@ -19,10 +19,8 @@ export const fetchUserIntegrations = (id) => {
 
     try {
       const res = await axios.get(`${API_ROUTE}/user_integrations/${id}`);
-      console.log(res.data.response)
       dispatch({ type: FETCH_AUTH_INTEGRATIONS, payload: res.data.response });
     } catch (err) {
-      console.log(err.response)
 
       dispatch({
         type: FETCH_AUTH_INTEGRATIONS_ERROR,
@@ -44,7 +42,7 @@ export const createIntegration = (createIntegration) => {
       });
       history.push("/home");
     } catch (err) {
-      dispatch({ type: CREATE_INTEGRATION_ERROR, payload: err.response.data.error });
+      dispatch({ type: CREATE_INTEGRATION_ERROR, payload: err.response });
     }
   };
 };
@@ -64,7 +62,7 @@ export const updateIntegration = (updateDetails, updateSuccess) => {
       });
       updateSuccess();
     } catch (err) {
-      dispatch({ type: UPDATE_INTEGRATION_ERROR, payload: err.response.data.error });
+      dispatch({ type: UPDATE_INTEGRATION_ERROR, payload: err.response });
     }
   };
 };

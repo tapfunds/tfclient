@@ -4,18 +4,21 @@ import qs from "qs";
 import { Row, Col } from "antd";
 import Transfer from "../Plaid/Transfer";
 import "./GetBalance.css";
+import { useSelector } from "react-redux";
 
 const balenceURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/balance`;
 
-function GetBalance(props) {
+const  GetBalance = () => {
   const [balances, setBalences] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
-  var t = props.data;
-
+  const currentIntegrationState = useSelector((state) => state.IntegrationsState);
+  const item_info = currentIntegrationState.authIntegrations
+    ? currentIntegrationState.authIntegrations
+    : "";
+  var t = item_info;
   useEffect(() => {
-    if (typeof t.data !== "undefined") {
+    if (typeof t !== "undefined") {
       setIsError(false);
       setIsLoading(true);
       const config = {
@@ -26,8 +29,8 @@ function GetBalance(props) {
 
       let user_accounts = [];
       let promises = [];
-      for (let i = 0; i < t.data.length; i++) {
-        config.data = qs.stringify({ access_token: t.data[i].accesstoken });
+      for (let i = 0; i < t.length; i++) {
+        config.data = qs.stringify({ access_token: t[i].accesstoken });
         promises.push(
           axios(config)
             .then((response) => {
@@ -35,7 +38,6 @@ function GetBalance(props) {
               // if (response.data.error.StatusCode === 400){
               //   console.log("we need to handle this")
               // }
-
               user_accounts.push(response.data.accounts);
             })
             .catch((error) => {
@@ -46,7 +48,7 @@ function GetBalance(props) {
       setIsLoading(false);
       Promise.all(promises).then(() => setBalences(user_accounts));
     } else {
-      setTimeout(t.data, 250);
+      setTimeout(t, 250);
     }
   }, [t]);
   let arr = [];
@@ -80,8 +82,9 @@ function GetBalance(props) {
       });
     }
   }
-  console.log(balances);
-  console.log(arr);
+
+  console.log(balances)
+  console.log(arr)
   return isLoading || isError ? (
     <div>We got issues captain</div>
   ) : (

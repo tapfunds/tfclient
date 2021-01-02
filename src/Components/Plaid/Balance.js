@@ -12,9 +12,7 @@ function Balance() {
     ? currentUserState.currentUser.id
     : "";
   const dispatch = useDispatch();
-  console.log("user ID",AuthID)
 
-  const [data] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -23,11 +21,12 @@ function Balance() {
     getTokens(AuthID);
     setIsLoading(false)
   }, [dispatch, AuthID]);
+
   return isLoading ? (
     <div>Loadin</div>
   ) : (
     <div className="container">
-      <GetBalance data={data} />
+      <GetBalance/>
     </div>
   );
 }

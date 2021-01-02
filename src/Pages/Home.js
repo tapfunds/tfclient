@@ -11,12 +11,13 @@ const styles = StyleSheet.create({
     height: "300vh",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    alignSelf: "auto",
+    justifyContent: "space-between"
+
   },
   child:{
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
     alignSelf: "auto",
     padding: "13px",
     paddingBottom: "13px"
@@ -24,8 +25,7 @@ const styles = StyleSheet.create({
   footer:{
     display: "flex",
     flexDirection: "column",
-    alignSelf: "auto",
-    paddingTop: "13px"
+    paddingTop: "13px",
   }
 });
 
@@ -36,7 +36,7 @@ const Home = () => {
     return <Redirect to="/login" />;
   }
   return (
-    
+    <div>
       <div className={css(styles.wrapper)}>
         <div className={css(styles.child)}>
           <Profile />
@@ -45,7 +45,7 @@ const Home = () => {
           <FooterContainer />
         </div>
       </div>
-
+      </div>
   )
 }
 
