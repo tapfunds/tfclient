@@ -5,8 +5,18 @@ import { Row, Col } from "antd";
 import Transfer from "../Plaid/Transfer";
 import "./GetBalance.css";
 import { useSelector } from "react-redux";
+import { StyleSheet, css } from "aphrodite";
 
 const balenceURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/balance`;
+const styles = StyleSheet.create({
+
+  container: {
+      display: "flex",
+      flexWrap: "wrap",
+  },
+
+});
+
 
 const  GetBalance = () => {
   const [balances, setBalences] = useState([]);
@@ -88,9 +98,9 @@ const  GetBalance = () => {
   return isLoading || isError ? (
     <div>We got issues captain</div>
   ) : (
-    <div className="main">
+    <div className={css(styles.footer)}>
       <div className="grid">
-        <Row>
+        <Row >
           {arr.map((item) => (
             <Col key={item.item_num}>
               <div className="card">

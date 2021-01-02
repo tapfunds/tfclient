@@ -5,6 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+
 }
 
 .main {
@@ -14,6 +16,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+
 }
 
 .footer {
@@ -23,6 +27,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+
 }
 
 .footer img {
@@ -55,6 +61,7 @@
 .title,
 .description {
   text-align: center;
+  
 }
 
 .description {
@@ -115,9 +122,3 @@
   height: 1em;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}

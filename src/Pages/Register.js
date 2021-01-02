@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
+import { Label, Input, FormGroup, CardHeader, CardBody } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
+import { Card, Button } from "antd";
+import { StyleSheet, css } from "aphrodite";
 
 import "./Auth.css";
 import { SignUp } from '../store/modules/auth/actions/authAction';
 
-
+const styles = StyleSheet.create({
+  button: {
+    background: "#48A9FF",
+    border: "none",
+    fontStyle: "italic",
+    color: "white",
+  }
+});
 
 const Register = () => {
 
@@ -45,7 +54,7 @@ const Register = () => {
 
         <div className="container Auth">
         <Card className="card-style">
-          <CardHeader>Welcome To SeamFlow</CardHeader>
+          <CardHeader>Welcome To Tapfunds</CardHeader>
           <CardBody>
           <form onSubmit={submitUser}>
           <FormGroup>
@@ -97,6 +106,8 @@ const Register = () => {
             </FormGroup>
             { currentState.isLoading ? (
               <Button
+              className={css(styles.button)}
+
                 color="primary"
                 type="submit"
                 block
@@ -106,6 +117,8 @@ const Register = () => {
             </Button>
             ) : (
               <Button
+              className={css(styles.button)}
+
                 color="primary"
                 type="submit"
                 block
