@@ -11,6 +11,7 @@ import setAuthorizationToken  from './utils/authorization';
 import { LOGIN_SUCCESS } from './store/modules/auth/authTypes';
 import { Router } from "react-router-dom";
 import {history} from './utils/history';
+import 'rc-footer/assets/index.css';
 
 //when the page reloads, the auth user is still set
 if (localStorage.token){

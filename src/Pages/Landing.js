@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { StyleSheet, css } from "aphrodite";
-import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import {CustomButton} from "../Components/Button/Button";
 import { useSelector } from "react-redux";
 
@@ -73,9 +72,6 @@ function Landing() {
               
               <Link to="/signin" ><CustomButton text="Tap your finances"/></Link>
             
-          </div>
-          <div>
-            <FooterContainer />
           </div>
         </div>
       </React.Fragment>

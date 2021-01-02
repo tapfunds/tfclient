@@ -1,6 +1,5 @@
 import React from "react";
 import Profile from "../Components/ProfilePage/Profile";
-import { FooterContainer } from "../Components/Navigation/FooterContainer";
 import { StyleSheet, css } from "aphrodite";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -40,9 +39,6 @@ const Home = () => {
       <div className={css(styles.wrapper)}>
         <div className={css(styles.child)}>
           <Profile />
-        </div>
-        <div className={css(styles.footer)}>
-          <FooterContainer />
         </div>
       </div>
       </div>
