@@ -13,6 +13,6 @@ let VAR_API_ROUTE
 
 process.env.NODE_ENV === 'development'
   ? VAR_API_ROUTE = 'http://localhost:8080/api/v1'
-  : VAR_API_ROUTE = 'http://127.0.0.1:8888/api/v1'
+  : VAR_API_ROUTE = 'http://localhost:8080/api/v1'
   
 export default VAR_API_ROUTE
