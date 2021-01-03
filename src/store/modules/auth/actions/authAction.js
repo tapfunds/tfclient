@@ -34,7 +34,7 @@ export const SignIn = (credentials) => {
       setAuthorizationToken(userData.token);
       dispatch({ type: LOGIN_SUCCESS, payload: userData });
     } catch (err) {
-      dispatch({ type: LOGIN_ERROR, payload: err.response.data.error });
+      dispatch({ type: LOGIN_ERROR, payload: err.response });
     }
   };
 };
@@ -57,7 +57,7 @@ export const SignUp = (newUser) => {
       dispatch({ type: SIGNUP_SUCCESS });
       history.push("/login");
     } catch (err) {
-      dispatch({ type: SIGNUP_ERROR, payload: err.response.data.error });
+      dispatch({ type: SIGNUP_ERROR, payload: err.response });
     }
   };
 };
@@ -82,7 +82,7 @@ export const updateUserAvatar = (updateUserAvatar) => {
     } catch (err) {
       dispatch({
         type: UPDATE_USER_AVATAR_ERROR,
-        payload: err.response.data.error,
+        payload: err.response,
       });
     }
   };
@@ -103,7 +103,7 @@ export const updateUser = (updateUser, clearInput) => {
       window.localStorage.setItem("user_data", JSON.stringify(updatedUser)); //update the localstorages
       clearInput();
     } catch (err) {
-      dispatch({ type: UPDATE_USER_ERROR, payload: err.response.data.error });
+      dispatch({ type: UPDATE_USER_ERROR, payload: err.response});
     }
   };
 };
@@ -118,7 +118,7 @@ export const deleteUser = (id) => {
       window.localStorage.clear(); //update the localstorage
       window.location.href = "/";
     } catch (err) {
-      dispatch({ type: DELETE_USER_ERROR, payload: err.response.data.error });
+      dispatch({ type: DELETE_USER_ERROR, payload: err.response });
     }
   };
 };
@@ -135,7 +135,7 @@ export const ForgotPassword = (userEmail, clearInput) => {
     } catch (err) {
       dispatch({
         type: FORGOT_PASSWORD_ERROR,
-        payload: err.response.data.error,
+        payload: err.response,
       });
     }
   };
@@ -153,7 +153,7 @@ export const ResetPassword = (details, clearInput) => {
     } catch (err) {
       dispatch({
         type: RESET_PASSWORD_ERROR,
-        payload: err.response.data.error,
+        payload: err.response,
       });
     }
   };
