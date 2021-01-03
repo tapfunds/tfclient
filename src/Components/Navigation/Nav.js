@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
   subtext: {
     color: "#48A9FF",
     padding: "10px",
+    width: "360px",
+    fontStyle: "italic",
+    fontWeight: "bold",
+
   },
 
 });
@@ -50,20 +54,20 @@ const Navigation = () => {
             )
 
   const SignedOutLinks = (
-                <div className={css(styles.subtext)}>
+                <React.Fragment>
                   <NavItem style={{marginRight: "20px", color: "#48A9FF"}}>
-                    <Link to='/login'>Login</Link>
+                    <Link className={css(styles.subtext)} to='/login'>Login</Link>
                   </NavItem>
                   <NavItem style={{color: "#48A9FF"}}>
-                    <Link to='/signup'>Signup</Link>
+                    <Link className={css(styles.subtext)} to='/signup'>Signup</Link>
                   </NavItem>
-                </div>
+                </React.Fragment>
               )
 
 
   return (
     <div className="mb-3">
-      <Navbar color="light" light expand="md"> 
+      <Navbar color="white" light expand="md"> 
           <NavbarBrand className="mx-auto" href="/"><img src={image} alt="tapfunds logo go boom" /></NavbarBrand>
           <NavbarToggler onClick={() => setIsOpen(!isOpen) } /> 
         <Collapse isOpen={isOpen} navbar> 

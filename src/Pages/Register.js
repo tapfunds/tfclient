@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Label, Input, FormGroup, CardHeader, CardBody } from "reactstrap";
+import { Label, Input, FormGroup, CardHeader, CardBody, Button } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
-import { Card, Button } from "antd";
+import { Card } from "antd";
 import { StyleSheet, css } from "aphrodite";
 
 import "./Auth.css";
@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
   card: {
     width: "360px",
     fontSize: "17px",
+    fontStyle: "italic",
+
   },
 });
 

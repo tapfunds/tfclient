@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Label, Input, FormGroup, CardHeader, CardBody } from "reactstrap";
+import { Label, Input, FormGroup, Button, CardHeader, CardBody } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
 import "./Auth.css";
 import { SignIn } from '../store/modules/auth/actions/authAction';
-import { Card, Button } from "antd";
+import { Card,  } from "antd";
 import { StyleSheet, css } from "aphrodite";
 
 const styles = StyleSheet.create({
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   card: {
     width: "360px",
     fontSize: "17px",
+    fontStyle: "italic",
   },
 });
 
@@ -110,7 +111,6 @@ const Login = () => {
 
             { currentState.isLoading ? (
               <Button
-              className={css(styles.button)}
                 color="primary"
                 type="submit"
                 block
@@ -120,7 +120,6 @@ const Login = () => {
               </Button>
             ) : (
               <Button
-              className={css(styles.button)}
                 color="primary"
                 type="submit"
                 block

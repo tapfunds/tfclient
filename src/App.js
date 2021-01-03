@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: "100vh",
     flexDirection: "column",
-    height: "auto !important",  
+    justifyContent: "space-between",
   }
 });
 const App = () => {

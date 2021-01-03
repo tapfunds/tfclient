@@ -5,7 +5,11 @@ import { StyleSheet, css } from "aphrodite";
 const styles = StyleSheet.create({
 
     footer: {
-        flex: 1,
+      display: 'flex',
+      flex: 1,
+      alignContent: "center",
+    flexDirection: "column",
+    justifyContent: "flex-end",
     }
   });
 

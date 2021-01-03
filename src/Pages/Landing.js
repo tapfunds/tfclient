@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   text: {
     paddingTop:"15px",
     fontSize: "72px",
-    lineHeight: "35px",
     fontStyle: "italic",
     fontWeight: "bold",
   },
@@ -70,7 +69,7 @@ function Landing() {
 
               </div>
               
-              <Link to="/signin" ><CustomButton text="Tap your finances"/></Link>
+              <Link to="/login" ><CustomButton text="Tap your finances"/></Link>
             
           </div>
         </div>

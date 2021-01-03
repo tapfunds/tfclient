@@ -4,7 +4,6 @@ import Login from "../../Pages/Login";
 import Register from "../../Pages/Register";
 import ForgotPassword from "../../Pages/ForgotPassword";
 import ResetPassword from "../../Pages/ResetPassword";
-import PasswordReset from "../../Pages/PasswordReset";
 import Landing from "../../Pages/Landing";
 import Settings from "../../Pages/Settings";
 import PlaidAuth from "../../Pages/PlaidAuth";
@@ -18,15 +17,14 @@ const App = () => {
        <div className="App">
         <Switch>
             <Route exact path={ROUTES.LANDING} component={Landing}/>
-            <Route path={ROUTES.RESET} component={PasswordReset}/>
             <Route path={ROUTES.HOME} component={Home}/>
             <Route path={ROUTES.AUTH} component={PlaidAuth}/>
             <Route path={ROUTES.SETTING} component={Settings}/>
             <Route path={ROUTES.STATS} component={Stats}/>
-            <Route path='/login' component={Login} />
-            <Route path='/signup' component={Register} />
-            <Route path='/forgotpassword' component={ForgotPassword} />
-            <Route path='/resetpassword/:token' component={ResetPassword} />
+            <Route path={ROUTES.SIGN_IN} component={Login} />
+            <Route path={ROUTES.SIGN_UP} component={Register} />
+            <Route path={ROUTES.RESET} component={ForgotPassword} />
+            <Route path='/reset/:token' component={ResetPassword} />
             <Route component={FoF}/>
         </Switch>
       </div>
