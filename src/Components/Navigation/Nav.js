@@ -4,6 +4,7 @@ import image from "../../logo2.svg";
 import * as ROUTES from "../../constants/routes";
 import { useSelector } from "react-redux";
 import './Nav.css'
+import { StyleSheet, css } from "aphrodite";
 
 
 import {
@@ -15,7 +16,14 @@ import {
   NavItem,
 } from 'reactstrap';
 
+const styles = StyleSheet.create({
 
+  subtext: {
+    color: "#48A9FF",
+    padding: "10px",
+  },
+
+});
 
 const Navigation = () => {
 
@@ -42,14 +50,14 @@ const Navigation = () => {
             )
 
   const SignedOutLinks = (
-                <React.Fragment>
-                  <NavItem style={{marginRight: "20px" }}>
+                <div className={css(styles.subtext)}>
+                  <NavItem style={{marginRight: "20px", color: "#48A9FF"}}>
                     <Link to='/login'>Login</Link>
                   </NavItem>
-                  <NavItem>
+                  <NavItem style={{color: "#48A9FF"}}>
                     <Link to='/signup'>Signup</Link>
                   </NavItem>
-                </React.Fragment>
+                </div>
               )
 
 

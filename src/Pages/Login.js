@@ -1,10 +1,28 @@
 import React, { useState } from "react";
-import { Label, Input, FormGroup, Button, Card, CardHeader, CardBody } from "reactstrap";
+import { Label, Input, FormGroup, CardHeader, CardBody } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from 'react-router-dom';
 import "./Auth.css";
 import { SignIn } from '../store/modules/auth/actions/authAction';
+import { Card, Button } from "antd";
+import { StyleSheet, css } from "aphrodite";
 
+const styles = StyleSheet.create({
+  button: {
+    background: "#48A9FF",
+    border: "none",
+    fontStyle: "italic",
+    color: "white",
+  },
+  subtext: {
+    color: "black",
+    padding: "10px",
+  },
+  card: {
+    width: "360px",
+    fontSize: "17px",
+  },
+});
 
 const Login = () => {
 
@@ -40,7 +58,7 @@ const Login = () => {
     return (
       <div className="App" id="page-container">
         <div className="container Auth">
-        <Card className="card-style">
+        <Card className={css(styles.card)}>
           <CardHeader>Login</CardHeader>
           <CardBody>
           <form onSubmit={submitUser}>
@@ -92,6 +110,7 @@ const Login = () => {
 
             { currentState.isLoading ? (
               <Button
+              className={css(styles.button)}
                 color="primary"
                 type="submit"
                 block
@@ -101,6 +120,7 @@ const Login = () => {
               </Button>
             ) : (
               <Button
+              className={css(styles.button)}
                 color="primary"
                 type="submit"
                 block
@@ -110,7 +130,7 @@ const Login = () => {
             </Button>
             )}
             </form>
-            <div className="mt-2" style={{display: "flex", justifyContent: "space-between"}}>
+            <div className="mt-2" style={{display: "flex", justifyContent: "space-between", color: "#48A9FF"}}>
               <div>
                 <small><Link to="/signup">Sign Up</Link></small>
               </div>
