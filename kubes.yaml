@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: tfclient
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tfclient
+  template:
+    metadata:
+      labels:
+        app: tfclient
+    spec:
+      containers:
+        - name: tfclient
+          image: qweliant/tfclient
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tfclient
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: 31000
+  selector:
+    app: tfclient
