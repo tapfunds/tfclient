@@ -2,6 +2,8 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: tfclient
+  labels:
+    app: tfclient
 spec:
   replicas: 2
   selector:
@@ -17,7 +19,26 @@ spec:
           image: qweliant/tfclient
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000
+            - containerPort: 80
+          resources:
+                limits:
+                    memory: '512Mi'
+                    cpu: '200m'
+          livenessProbe:
+                httpGet:
+                    path: /index.html
+                    port: 80
+                initialDelaySeconds: 15
+                timeoutSeconds: 2
+                periodSeconds: 5
+                failureThreshold: 1
+          readinessProbe:
+              httpGet:
+                  path: /index.html
+                  port: 80
+              initialDelaySeconds: 15
+              periodSeconds: 5
+              failureThreshold: 1
       restartPolicy: Always
 ---
 kind: Service
@@ -25,11 +46,9 @@ apiVersion: v1
 metadata:
   name: tfclient
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-    - port: 3000
-      targetPort: 3000
-      protocol: TCP
-      nodePort: 31000
+    - port: 80
+      targetPort: 80
   selector:
     app: tfclient

@@ -8,7 +8,15 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
-    volumes:
-      - "/app/node_modules"
-      - "./:/app"
+      - 3000:80
+    restart: on-failure
+    volumes:              # without this volume mapping to the directory of our project, live reloading wont happen
+      - .:/usr/src/app
+    networks:
+      - tapfunds
+
+
+# Networks to be created to facilitate communication between containers
+networks:
+  tapfunds:
+    driver: bridge
