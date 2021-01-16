@@ -12,7 +12,7 @@ export const FOF = '';
 let VAR_API_ROUTE
 
 process.env.NODE_ENV === 'development'
-  ? VAR_API_ROUTE = 'http://localhost:8080/api/v1'
-  : VAR_API_ROUTE = 'http://localhost:8080/api/v1'
+  ? VAR_API_ROUTE = `${process.env.REACT_APP_DEV_API_URL}/api/v1`
+  : VAR_API_ROUTE = `${process.env.REACT_APP_DEV_API_URL}/api/v1`
   
 export default VAR_API_ROUTE
