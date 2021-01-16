@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import image from "../../logo2.svg";
 import * as ROUTES from "../../constants/routes";
 import { useSelector } from "react-redux";
@@ -39,16 +39,17 @@ const Navigation = () => {
 
   const SignedInLinks = (
               <React.Fragment>
-              <NavLink to={ROUTES.STATS}  className="mt-2" style={{marginRight: "15px" }}>
-                Money{" "}
-              </NavLink>
-              <NavLink to={ROUTES.AUTH}  className="mt-2" style={{marginRight: "15px" }}>
-                Connect Account
-              </NavLink>
-              <NavLink to={ROUTES.SETTING}  className="mt-2" style={{marginRight: "15px" }}>
-                Settings
-              </NavLink>
-                  
+              <NavItem style={{marginRight: "20px", color: "#48A9FF"}}>
+                    <Link className={css(styles.subtext)} to={ROUTES.STATS}>Money</Link>
+                  </NavItem> 
+
+              <NavItem style={{color: "#48A9FF"}}>
+                    <Link className={css(styles.subtext)}  to={ROUTES.AUTH}>Connect Account</Link>
+                  </NavItem>
+
+              <NavItem style={{color: "#48A9FF"}}>
+                    <Link className={css(styles.subtext)}  to={ROUTES.SETTING}>Settings</Link>
+                  </NavItem> 
               </React.Fragment>
 
             )
