@@ -33,9 +33,6 @@ function Balance() {
   const [isError, setIsError] = useState(false);
 
 
-
-
-
   useEffect(() => {
     const getTokens = (ID) => dispatch(fetchUserIntegrations(ID));
 
@@ -48,6 +45,7 @@ function Balance() {
   ? currentIntegrationState.authIntegrations
   : "";
   var t = item_info;
+  console.log(t)
   useEffect(() => {
     if (typeof t !== "undefined") {
       setIsError(false);
@@ -57,7 +55,6 @@ function Balance() {
         url: balenceURL,
         data: qs.stringify({ access_token: "token" }),
       };
-
       let user_accounts = [];
       let promises = [];
       for (let i = 0; i < t.length; i++) {
