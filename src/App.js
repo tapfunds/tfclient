@@ -4,7 +4,6 @@ import Routes from "./Components/Routes/Routes";
 import { FooterContainer } from "./Components/Navigation/FooterContainer";
 import { StyleSheet, css } from "aphrodite";
 
-
 const styles = StyleSheet.create({
 
   container: {
@@ -15,6 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   }
 });
+
 const App = () => {
   return (
     <div className={css(styles.container)}>
