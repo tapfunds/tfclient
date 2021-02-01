@@ -10,11 +10,11 @@ import {
 
 const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/create_link_token`;
 const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/set_access_token`;
-const accessTokenURL = `${process.env.REACT_APP_DEV_OBJECT_MAP_API_URL}/api/map/v1/map_item`;
+// const accessTokenURL = `${process.env.REACT_APP_DEV_OBJECT_MAP_API_URL}/api/map/v1/map_item`;
 
 function Link() {
   const [data, setData] = useState("");
-  const [accessToken, setAccessToken] = useState("")
+  // const [accessToken, setAccessToken] = useState("")
   const currentUserState = useSelector((state) => state.Auth);
   const AuthID = currentUserState.currentUser
     ? currentUserState.currentUser.id
@@ -44,20 +44,20 @@ function Link() {
     history.push(path);
   }, [history]);
 
-  const sendAccessToken = useCallback(async () => {
-    const config = {
-      method: "post",
-      url: accessTokenURL,
-      data: qs.stringify({ user: AuthID, accesstoken: accessToken }),
-      headers: { "content-type": "application/json" },
-    };
-    try{
-      const res = await axios(config);
-      console.log(res)
-    } catch (error) {
-      console.error(error);
-    }
-  }, [accessToken,AuthID]);
+  // const sendAccessToken = useCallback(async () => {
+  //   const config = {
+  //     method: "post",
+  //     url: accessTokenURL,
+  //     data: qs.stringify({ user: AuthID, accesstoken: accessToken }),
+  //     headers: { "content-type": "application/json" },
+  //   };
+  //   try{
+  //     const res = await axios(config);
+  //     console.log(res)
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }, [accessToken,AuthID]);
 
   const onSuccess = useCallback(async (token, metadata) => {
     const sendToken = (integrationDetails) => dispatch(createIntegration(integrationDetails));
@@ -81,15 +81,16 @@ function Link() {
         
       }
       sendToken(details)
-      setAccessToken(response.data.access_token)
-      sendAccessToken()
+      console.log(response.data.access_token)
+      // setAccessToken(response.data.access_token)
+      // sendAccessToken()
     } catch (error) {
       console.error(error);
     }
 
 
     routeChange()
-  }, [AuthID, user, dispatch, routeChange, sendAccessToken]);
+  }, [AuthID, user, dispatch, routeChange]);
 
 
 
