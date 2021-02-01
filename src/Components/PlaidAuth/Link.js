@@ -10,7 +10,7 @@ import {
 
 const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/create_link_token`;
 const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/set_access_token`;
-const accessToken = `${process.env.REACT_APP_DEV_OBJECT_MAP_API_URL}/api/map/v1/map_item`;
+const accessTokenURL = `${process.env.REACT_APP_DEV_OBJECT_MAP_API_URL}/api/map/v1/map_item`;
 
 function Link() {
   const [data, setData] = useState("");
@@ -44,6 +44,21 @@ function Link() {
     history.push(path);
   }, [history]);
 
+  const sendAccessToken = useCallback(async () => {
+    const config = {
+      method: "post",
+      url: accessTokenURL,
+      data: qs.stringify({ user: AuthID, accesstoken: accessToken }),
+      headers: { "content-type": "application/json" },
+    };
+    try{
+      const res = await axios(config);
+      console.log(res)
+    } catch (error) {
+      console.error(error);
+    }
+  }, [accessToken,AuthID]);
+
   const onSuccess = useCallback(async (token, metadata) => {
     const sendToken = (integrationDetails) => dispatch(createIntegration(integrationDetails));
 
@@ -74,22 +89,9 @@ function Link() {
 
 
     routeChange()
-  }, [AuthID, user, dispatch, routeChange]);
+  }, [AuthID, user, dispatch, routeChange, sendAccessToken]);
 
-  const sendAccessToken = useCallback(async () => {
-    const config = {
-      method: "post",
-      url: accessToken,
-      data: qs.stringify({ user: AuthID, accesstoken: accessToken }),
-      headers: { "content-type": "application/json" },
-    };
-    try{
-      const res = await axios(config);
-      console.log(res)
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+
 
   const config = {
     token: data,
