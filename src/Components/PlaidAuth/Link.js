@@ -10,9 +10,11 @@ import {
 
 const tokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/create_link_token`;
 const sendTokenURL = `${process.env.REACT_APP_DEV_API_URL}/api/v1/set_access_token`;
+const accessToken = `${process.env.REACT_APP_DEV_OBJECT_MAP_API_URL}/api/map/v1/map_item`;
 
 function Link() {
   const [data, setData] = useState("");
+  const [accessToken, setAccessToken] = useState("")
   const currentUserState = useSelector((state) => state.Auth);
   const AuthID = currentUserState.currentUser
     ? currentUserState.currentUser.id
@@ -50,7 +52,7 @@ function Link() {
       method: "post",
       url: sendTokenURL,
       data: qs.stringify({ public_token: token }),
-      headers: { "content-type": "application/x-www-form-urlencoded" },
+      headers: { "content-type": "application/json" },
     };
     try {
       const response = await axios(config);
@@ -64,6 +66,8 @@ function Link() {
         
       }
       sendToken(details)
+      setAccessToken(response.data.access_token)
+      sendAccessToken()
     } catch (error) {
       console.error(error);
     }
@@ -71,6 +75,21 @@ function Link() {
 
     routeChange()
   }, [AuthID, user, dispatch, routeChange]);
+
+  const sendAccessToken = useCallback(async () => {
+    const config = {
+      method: "post",
+      url: accessToken,
+      data: qs.stringify({ user: AuthID, accesstoken: accessToken }),
+      headers: { "content-type": "application/json" },
+    };
+    try{
+      const res = await axios(config);
+      console.log(res)
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   const config = {
     token: data,
@@ -80,7 +99,7 @@ function Link() {
   const { open, ready, err } = usePlaidLink(config);
   // make an
   if (err) return <p>Error!</p>;
-
+  
   return (
     <div>
       <button onClick={() => open()} disabled={!ready}>
