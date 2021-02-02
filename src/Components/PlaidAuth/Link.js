@@ -88,8 +88,6 @@ function Link() {
     routeChange()
   }, [AuthID, user, dispatch, routeChange]);
 
-
-
   const config = {
     token: data,
     onSuccess,
